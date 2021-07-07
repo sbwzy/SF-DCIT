@@ -35,6 +35,4 @@ public with sharing class AccountCtrl {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
-    //加载客户下的所有联系人
 }

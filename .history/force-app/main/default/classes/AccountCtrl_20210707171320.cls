@@ -26,15 +26,9 @@ public with sharing class AccountCtrl {
     public static List<AccountWrapper> getAllAccount(){
         try {
             List<AccountWrapper> accList = new list<AccountWrapper>();
-            for(Account acc:[SELECT id,Name FROM Account order by createdate desc limit 5]){
-                AccountWrapper wrapper = new AccountWrapper(acc.Name, acc.Id);
-                accList.add(wrapper);
-            }
-            return accList;
+            for(Account acc:[SELECT id,Name FROM Account order by createdate desc limit])
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
-    //加载客户下的所有联系人
 }

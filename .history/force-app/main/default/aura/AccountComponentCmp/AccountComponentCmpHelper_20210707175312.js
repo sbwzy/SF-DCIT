@@ -1,7 +1,7 @@
 ({
     initAccountList : function(component) {
         var action = component.get("c.getAllAccount");
-        action.setCallback(this, function (response){
+        action.setCallback(this, function (response)){
             var state = response.getState();
             if (state === "SUCCESS"){
                 component.set('v.accountList', response.getReturnValue());
@@ -19,7 +19,6 @@
                     console.log("Unknow error");
                 }
             }
-        });
-        $A.enqueueAction(action);
+        }
     }
 })
