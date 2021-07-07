@@ -24,10 +24,8 @@
       <lightning:icon iconName="util:connected_apps" size="small" />
       联系人列表视图
     </aura:set>
-    <p class="slds-p-horizontal_small">
-    <div class="slds-form-element" style="height: 200px;overflow:scroll;">
-      <lightning:datatable columns="{! v.columns }" data="{! v.data }" keyField="Id" />
-    </div>
+    <p class="slds-form-element" style="height: 200px;overflow:scroll;">
+      
     </p>
   </lightning:card>
 </aura:component>

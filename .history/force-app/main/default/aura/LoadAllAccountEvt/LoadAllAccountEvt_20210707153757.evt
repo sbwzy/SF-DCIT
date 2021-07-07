@@ -1,0 +1,1 @@
+<aura:event type="COMPONENT" description="FIRE EVENT TO PARENT COMPONENT TO LOAD ALL ACCOUNTS"/>

@@ -26,7 +26,7 @@
     </aura:set>
     <p class="slds-p-horizontal_small">
     <div class="slds-form-element" style="height: 200px;overflow:scroll;">
-      <lightning:datatable columns="{! v.columns }" data="{! v.data }" keyField="Id" />
+      <lightning:datatable columns="{! v.columns }" data="{! v.data }" keyField=""
     </div>
     </p>
   </lightning:card>
