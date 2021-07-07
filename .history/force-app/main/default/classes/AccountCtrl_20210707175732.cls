@@ -36,11 +36,11 @@ public with sharing class AccountCtrl {
         }
     }
 
-    //加载客户下的所有联系人 3:27:52
+    //加载客户下的所有联系人
     @AuraEnabled
-    public static List<Contact> getAllContacts(String accountId){
+    public static string methodName(){
         try {
-            return [SELECT Id,Name,Email,MobilPhone FROM Contact WHERE AccountId=:];
+            
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
