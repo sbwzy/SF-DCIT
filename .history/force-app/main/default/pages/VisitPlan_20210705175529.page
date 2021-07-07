@@ -1,0 +1,49 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-05-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-05-2021   robert   Initial Version
+-->
+<apex:page controller="QueryVisitPlan">
+    
+    <apex:form id="from">
+        <apex:image value="{!$Resource.Folder}" height="30px" style="float: left; "/>
+        <div style="float: left; margin: 0 auto; margin-left: 10px; line-height: 30px;">
+            <apex:outputLabel value="New Visit Plan" style="font-size: 20px;"></apex:outputLabel>
+        </div>
+        <apex:pageBlock >
+            
+            
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="检索" action="{!Query}" reRender="showpanel,msg"/>
+                <apex:commandButton value="清除条件"/>
+            </apex:pageBlockButtons>
+            
+            
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="销售姓名："></apex:outputLabel>
+                    <apex:inputText value="{!SalesName}"></apex:inputText>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访客户："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan.AccountName__c}"></apex:inputField>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访开始日期："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan.DateOfVisit__c}"></apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访结束日期："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan2.DateOfVisit__c}"></apex:inputField>                 
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

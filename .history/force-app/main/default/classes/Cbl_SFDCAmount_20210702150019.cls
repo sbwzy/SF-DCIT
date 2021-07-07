@@ -1,0 +1,27 @@
+/**
+ * @description       : 
+ * @author            : robert
+ * @group             : dcit-hf
+ * @last modified on  : 07-02-2021
+ * @last modified by  : robert
+ * Modifications Log 
+ * Ver   Date         Author   Modification
+ * 1.0   07-02-2021   robert   Initial Version
+**/
+public with sharing class Cbl_SFDCAmount {
+    public void SFDCAmount(List<OpportunityLineItem> list_Item){
+        set<ID> set_ID = new set<ID>();
+        List<ID> list_id = new List<id>();
+        //遍历得到的集合，set去重得到操作过的 业务机会 的ID
+        for (OpportunityLineItem objItem:list_Item){
+            set_ID.add(objItem.OpportunityId);
+        }
+        //存储业务机会产品
+        List<OpportunityLineItem> oppLitem = new List<OpportunityLineItem>();
+        //获取业务机会产品
+        for (OpportunityLineItem opportunityLitem:[SELECT Id,Name,Quantity,Product2Id,OpportunityId,TotalPrice,Product2.ProductLevel__c FROM OpportunityLineItem WHERE OpportunityId in: set_ID]){
+            oppLitem.add(opportunityLitem);
+        }
+        //存储业务机会
+        List<Opportunity> opp = new List<Opportunity>();
+}

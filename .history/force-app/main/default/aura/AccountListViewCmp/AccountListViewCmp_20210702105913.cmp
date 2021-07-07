@@ -1,0 +1,18 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-02-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component>
+  <aura:attribute name="accountList" type="List"/>
+  <aura:attribute name="accountId" type="String"/>
+
+  <aura:registerEvent name="contactList" type="c:LoadAllContactEvt"/>
+  //暴露一个公共方法给父组件调用
+  
+</aura:component>	

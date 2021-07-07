@@ -1,0 +1,20 @@
+/**
+ * @description       : 
+ * @author            : robert
+ * @group             : dcit-hf
+ * @last modified on  : 06-30-2021
+ * @last modified by  : robert
+ * Modifications Log 
+ * Ver   Date         Author   Modification
+ * 1.0   06-30-2021   robert   Initial Version
+**/
+public class MemberTask{
+    public void membertask(List<Member__c> listTask){
+        set<ID> setID = new set<ID>();
+        List<ID> listID = new List<ID>();
+
+        for (Member__c memb:listTask){
+            setID.add(memb.Buyedgoods__c);
+        }
+    }
+}

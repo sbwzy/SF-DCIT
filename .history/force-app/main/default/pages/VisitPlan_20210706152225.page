@@ -1,0 +1,70 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-06-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-05-2021   robert   Initial Version
+-->
+<apex:page controller="QueryVisitPlan">
+    <apex:form id="from">
+        <apex:image value="{!$Resource.CompanyLogo}" height="60px" style="float: left; "/>
+        <div style="float: left; margin: 0 auto; margin-left: 10px; line-height: 30px;">
+            <apex:outputLabel value="New Visit Plan" style="font-size: 30px;"></apex:outputLabel>
+        </div>
+        <apex:pageBlock >
+            <!-- 按钮 -->
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="检索" action="{!Query}" reRender="showpanel,msg"/>
+                <apex:commandButton value="清除条件"/>
+            </apex:pageBlockButtons>
+            <!-- 筛选数据 -->
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="销售姓名："></apex:outputLabel>
+                    <apex:inputText value="{!SalesName}"></apex:inputText>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访客户："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan.AccountName__c}"></apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访开始日期："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan.DateOfVisit__c}"></apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="拜访结束日期："></apex:outputLabel>
+                    <apex:inputField value="{!visitPlan2.DateOfVisit__c}"></apex:inputField>                 
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- 表头设置 -->
+            <apex:outputPanel id="showpanel">
+                <apex:pageMessages id="msg" />
+                <apex:pageBlockTable value="{!VisitPlanList}" var="vpl" footerClass="footer">
+                    <apex:column headerValue="操作" style="width:10%">
+                        <!-- 编辑与删除按钮 -->
+                        <apex:commandLink action="{!URLFOR($Action.VisitPlan__c.Edit, vpl.id, [retURL=''])}" value="Edit" />
+                        <apex:commandLink action="{!URLFOR($Action.VisitPlan__c.Delete, vpl.id, [retURL=''])}" value="Del" />
+                    </apex:column>
+                    <apex:column value="{!vpl.SalesName__c}" headerValue="销售姓名"></apex:column>
+                    <apex:column value="{!vpl.AccountName__c}" headerValue="客户姓名"></apex:column>
+                    <apex:column value="{!vpl.DateOfVisit__c}" headerValue="拜访日期"></apex:column>
+                    <apex:column value="{!vpl.VisitMethod__c}" headerValue="拜访方式"></apex:column>
+                    <apex:column value="{!vpl.Owner.Name}" headerValue="所有者"></apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            <!-- 翻页设置 -->
+            <div style="width: 200px;height: 40px;margin: 0 auto; margin-top: 20px; text-align: center;line-height: 40px;" >
+                <apex:outputPanel id="buttons">
+                    <apex:commandButton action="{!First}" title="First" value="首页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!Previous}" title="Previous" value="上一页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!Next}" title="Next" value="下一页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!End}" title="End" value="尾页" reRender="showpanel,buttons"/>
+                    <apex:facet name="footer">第{!pageNumber}/{!totalPages}页 共计{!total_size}条</apex:facet>
+                </apex:outputPanel>
+            </div>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

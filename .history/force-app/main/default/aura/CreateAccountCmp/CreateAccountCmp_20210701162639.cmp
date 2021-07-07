@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-01-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component controller="AccountCtrl">
+    <aura:attribute name="accountName" style="String" />
+    CreateAccountCmp
+    <lightning:card>
+        <aura:set attribute="title">
+            <lightning:icon iconName="utility:connected_apps" size="small"/>
+            创建客户
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <div class="slds-form-element">
+                <lightning:input name:"accountName" label="Account Name" placeholder="输入客户名" value='{!v.accountName}'/>
+            </div>
+        </p>
+        <aura:set attribute="footer">
+            <lightning:button variant="brand" label="保存" title="Brand action" onclick=
+        </aura:set>
+    </lightning:card>
+</aura:component>	

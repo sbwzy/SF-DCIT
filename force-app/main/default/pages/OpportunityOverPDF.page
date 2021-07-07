@@ -1,0 +1,82 @@
+<apex:page renderAs="PDF" showheader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" contentType="text/html; charset=UTF-8" standardController="Opportunity" extensions="Ctr_OpportunityOverPDF" >
+<html>
+    <head>
+    </head>
+    <body>
+        <div style="font-family:Arial Unicode MS;font-size:10px;" >
+            <div style="margin:0 auto; font-size:30px; text-align:center;">
+                <apex:image url="{!URLFOR ($Resource.CompanyLogo)}" width="100" height="80" style="float:left;" />
+                <span style="margin-left: 1px ">商机清单</span>
+            </div>
+
+            <div style="margin-top:20px">
+                <table cellspacing="0" style="margin:0 auto; width:100%; font-size: 12px;">
+                    <tr>
+                        <td>商机名: &nbsp;{!opportunityRecord.Name}</td>
+                        <td>客户名称: &nbsp;{!opportunityRecord.Account.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>类型: &nbsp;{!opportunityRecord.Type}</td>
+                        <td>阶段: &nbsp;{!opportunityRecord.StageName}</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top:5px">
+                <div style="font-size:25px">
+                    商机明细
+                </div>
+
+                <span style="display:inline-block; width:100%; border: 1px solid black; vertical-align:middle" class="line">
+                </span>
+                <table cellspacing="0" style="margin:0 auto; width:100%; font-size:10px; text-align:left;">
+                    <tr>
+                        <th class="" scope="col" width="20%">
+                            <div class="slds-truncate" title="">商机明细名称</div>
+                        </th>
+                        <th class="" scope="col" width="15%">
+                            <div class="slds-truncate" title="">产品名称</div>
+                        </th>
+                        <th class="" scope="col" width="12.5%">
+                            <div class="slds-truncate" title="">产品编码</div>
+                        </th>
+                        <th class="" scope="col" width="8.5%">
+                            <div class="slds-truncate" title="">数量</div>
+                        </th>
+                        <th class="" scope="col" width="8.5%">
+                            <div class="slds-truncate" title="">单价</div>
+                        </th>
+                        <th class="" scope="col" width="12.5%">
+                            <div class="slds-truncate" title="">总金额</div>
+                        </th>
+                    </tr>
+                </table>
+                <span style="display:inline-block; width:100%; border: 1px solid black; vertical-align:middle" class="line"></span>
+                <table cellspacing="0" style="margin:0 auto; width:100%; font-size:10px; text-align:left;">
+                    <apex:repeat value="{!opportunityItemList}" var="item">
+                        <tr>
+                            <th class="" scope="col" width="20%">
+                                <div class="slds-truncate" title="">{!item.Name}</div>
+                            </th>
+                            <th class="" scope="col" width="15%">
+                                <div class="slds-truncate" title="">{!item.Product2.Name}</div>
+                            </th>
+                            <th class="" scope="col" width="12.5%">
+                                <div class="slds-truncate" title="">{!item.ProductCode}</div>
+                            </th>
+                            <th class="" scope="col" width="8.5%">
+                                <div class="slds-truncate" title="">{!item.Quantity}</div>
+                            </th>
+                            <th class="" scope="col" width="8.5%">
+                                <div class="slds-truncate" title="">{!item.UnitPrice}</div>
+                            </th>
+                            <th class="" scope="col" width="12.5%">
+                                <div class="slds-truncate" title="">{!item.TotalPrice}</div>
+                            </th>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+</apex:page>

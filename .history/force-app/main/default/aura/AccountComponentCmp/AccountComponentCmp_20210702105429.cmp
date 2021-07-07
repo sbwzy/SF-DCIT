@@ -1,0 +1,38 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-02-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component controller="getName">
+    <aura:attribute name="accountList" type="List"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:handler name="LoadAllAccount" event="c:LoadAllAccountEvt" action="doInit"/>
+
+
+    <lightning:card footer="Card Footer" title="Hello">
+        <p class="slds-p-horizontal_small">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem padding="around-small" size="6">
+                    <lightning:layout multipleRows="true">
+                        <lightning:layoutItem padding="around-small" size="12">
+                            <c:CreateAccountCmp/>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="12">
+                            <c:AccountListViewCmp accountList="{!v.accountList}"/>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small" size="6">
+                    <c:ComponentListViewCmp/>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </p>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,20 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-01-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component>
+
+    <p class="slds-p-horizontal_small">
+        <c:AccountListViewCmp></c:AccountListViewCmp>
+        <c:CreteAccountCmp></c:CreteAccountCmp>
+        <c:ComponentListView></c:ComponentListView>
+    </p>
+    
+    
+</aura:component>
