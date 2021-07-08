@@ -8,7 +8,7 @@
   Ver   Date         Author   Modification
   1.0   07-01-2021   robert   Initial Version
 -->
-<aura:component controller="AccountCtrl">
+<!-- <aura:component controller="AccountCtrl">
   <!-- 定义属性 -->
   <aura:attribute name="columns" type="Object" />
   <aura:attribute name="data" type="List" />
@@ -30,4 +30,4 @@
     </div>
     </p>
   </lightning:card>
-</aura:component>
+</aura:component> -->
