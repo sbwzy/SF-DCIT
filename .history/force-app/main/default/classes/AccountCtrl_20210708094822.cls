@@ -36,7 +36,7 @@ public with sharing class AccountCtrl {
         }
     }
 
-    //加载客户下的所有联系人
+    //加载客户下的所有联系人 3:27:52
     @AuraEnabled
     public static List<Contact> getAllContacts(String accountId){
         try {
