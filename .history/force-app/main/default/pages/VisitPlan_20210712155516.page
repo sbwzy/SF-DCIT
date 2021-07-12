@@ -18,7 +18,7 @@
         <apex:pageBlock >
             
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,msg"/>
+                <apex:commandButton value="检索" action="{!Query}" reRender="showpanel,msg"/>
                 <apex:commandButton value="清除条件"/>
             </apex:pageBlockButtons>
                       
@@ -67,7 +67,7 @@
                 </apex:outputPanel>             
             </div>
             <div style="width: 200px;height: 10px;" >
-                第{!pageNumber}/{!totalPages}页 共计{!totalSize}条
+                第{!pageNumber}/{!totalPages}页 共计{!total_size}条
             </div>
         </apex:pageBlock>
     </apex:form>

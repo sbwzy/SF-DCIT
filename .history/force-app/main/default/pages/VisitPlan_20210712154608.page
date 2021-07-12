@@ -18,7 +18,7 @@
         <apex:pageBlock >
             
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,msg"/>
+                <apex:commandButton value="检索" action="{!Query}" reRender="showpanel,msg"/>
                 <apex:commandButton value="清除条件"/>
             </apex:pageBlockButtons>
                       
@@ -44,7 +44,7 @@
             <!--表格数据-->
             <apex:outputPanel id="showpanel">
                 <apex:pageMessages id="msg" />
-                <apex:pageBlockTable value="{!visitPlanList}" var="vpl" footerClass="footer">
+                <apex:pageBlockTable value="{!VisitPlanList}" var="vpl" footerClass="footer">
                     <apex:column headerValue="操作" style="width:10%">
                         <apex:commandLink action="{!URLFOR($Action.VisitPlan__c.Edit, vpl.id, [retURL=''])}" value="Edit" />
                         |
@@ -60,14 +60,14 @@
                      
             <div style="width: 200px;height: 60px;margin: 0 auto; margin-top: 5px; text-align: center;line-height: 40px;" >
                 <apex:outputPanel id="buttons">
-                    <apex:commandButton action="{!first}" title="First" value="首页" reRender="showpanel,buttons"/>
-                    <apex:commandButton action="{!previous}" title="Previous" value="上一页" reRender="showpanel,buttons"/>
-                    <apex:commandButton action="{!next}" title="Next" value="下一页" reRender="showpanel,buttons"/>
-                    <apex:commandButton action="{!end}" title="End" value="尾页" reRender="showpanel,buttons"/>                   
+                    <apex:commandButton action="{!First}" title="First" value="首页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!Previous}" title="Previous" value="上一页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!Next}" title="Next" value="下一页" reRender="showpanel,buttons"/>
+                    <apex:commandButton action="{!End}" title="End" value="尾页" reRender="showpanel,buttons"/>                   
                 </apex:outputPanel>             
             </div>
             <div style="width: 200px;height: 10px;" >
-                第{!pageNumber}/{!totalPages}页 共计{!totalSize}条
+                第{!pageNumber}/{!totalPages}页 共计{!total_size}条
             </div>
         </apex:pageBlock>
     </apex:form>

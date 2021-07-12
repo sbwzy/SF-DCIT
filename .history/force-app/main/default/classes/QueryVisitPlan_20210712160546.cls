@@ -100,12 +100,13 @@ public with sharing class QueryVisitPlan {
         return null;
     }
     
-    //数据查询
+   
     public void query(){
         if(salesName == null && visitPlan.AccountName__c == null && visitPlan.DateOfVisit__c == null && visitPlan2.DateOfVisit__c == null){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, '检索条件不能为空'));
             return;
-        }       
+        }
+        
         String sql = 'SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c WHERE Id != null';
         //销售名查询        
         if(salesName.length() > 0){
@@ -122,6 +123,7 @@ public with sharing class QueryVisitPlan {
             sql +=  ' and DateOfVisit__c >= : d1 and DateOfVisit__c <= : d2';
             System.debug(sql);
         }
+        
         visitPlanList = Database.query(sql);
     }     
 }

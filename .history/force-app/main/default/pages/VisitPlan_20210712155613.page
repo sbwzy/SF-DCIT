@@ -67,7 +67,7 @@
                 </apex:outputPanel>             
             </div>
             <div style="width: 200px;height: 10px;" >
-                第{!pageNumber}/{!totalPages}页 共计{!totalSize}条
+                第{!pageNumber}/{!totalPages}页 共计{!total_size}条
             </div>
         </apex:pageBlock>
     </apex:form>

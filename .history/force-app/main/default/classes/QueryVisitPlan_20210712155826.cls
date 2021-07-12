@@ -16,8 +16,8 @@ public with sharing class QueryVisitPlan {
     public String salesName {get; set;}	// 销售姓名
     
     //分页参数
-    public Integer counter = 0;  //基于第一位的偏移量
-    public static  Integer listSize = 5;//每页显示5条记录
+    public Integer counter = 0;  //偏移量
+    public static  Integer listSize = 5;//每页显示记录数
     public Integer totalSize; //总记录数
     
     // 获取拜访计划
@@ -28,7 +28,7 @@ public with sharing class QueryVisitPlan {
         visitPlan2 = new VisitPlan__c();
     }
     
-    //变量 visitPlanList 的get方法，数据库查询
+    //变量 visitPlanList 的get方法
     public List<VisitPlan__c> getVisitPlans() {
         try {            
             visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :listSize  offset :counter];// limit x,y            
@@ -100,28 +100,30 @@ public with sharing class QueryVisitPlan {
         return null;
     }
     
-    //数据查询
+   
     public void query(){
         if(salesName == null && visitPlan.AccountName__c == null && visitPlan.DateOfVisit__c == null && visitPlan2.DateOfVisit__c == null){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, '检索条件不能为空'));
             return;
-        }       
+        }
+        
         String sql = 'SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c WHERE Id != null';
-        //销售名查询        
+                
         if(salesName.length() > 0){
             sql += ' and SalesName__c = '+'\''+salesName+'\'';
         }
-        //客户名查询
+        
         if(visitPlan.AccountName__c != null){
             sql += ' and AccountName__c = '+'\''+visitPlan.AccountName__c+'\'';
         }
-        //拜访时间查询        
+                
         if(visitPlan.DateOfVisit__c != null && visitPlan2.DateOfVisit__c != null){
             Date d1 = visitPlan.DateOfVisit__c;
             Date d2 = visitPlan2.DateOfVisit__c;
             sql +=  ' and DateOfVisit__c >= : d1 and DateOfVisit__c <= : d2';
             System.debug(sql);
         }
+        
         visitPlanList = Database.query(sql);
     }     
 }
