@@ -20,7 +20,7 @@
                 <apex:commandButton value="检索" action="{!Query}" reRender="showpanel,msg"/>
                 <apex:commandButton value="清除条件"/>
             </apex:pageBlockButtons>
-            <!-- 筛选数据条件 -->
+            <!-- 筛选数据 -->
             <apex:pageBlockSection >
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="销售姓名："></apex:outputLabel>
