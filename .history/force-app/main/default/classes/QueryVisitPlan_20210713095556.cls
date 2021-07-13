@@ -13,7 +13,7 @@ public with sharing class QueryVisitPlan {
     public List<VisitPlan__c> visitPlanList{get; set;}    
     public VisitPlan__c visitPlan{get; set;} // 拜访计划
     public VisitPlan__c visitPlan2{get; set;}
-    public String salesName {get; set;}	// 销售姓名
+    public SalesName__c salesName{get; set;}	// 销售姓名
     
     //分页参数
     public Integer counter = 0;  //基于第一位的偏移量
@@ -31,9 +31,8 @@ public with sharing class QueryVisitPlan {
     //变量 visitPlanList 的get方法，数据库查询
     public List<VisitPlan__c> getVisitPlans() {
         try {            
-            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :5 offset :counter];
-            System.debug(visitPlanList);
-            totalSize = visitPlanList.size();            
+            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :listSize  offset :counter];
+            System.debug(visitPlanList);            
             return visitPlanList;
         } catch (Exception e) {
             ApexPages.addMessages(e);
@@ -103,9 +102,9 @@ public with sharing class QueryVisitPlan {
     
     //数据查询
     public void query(){
-        if(salesName == null && visitPlan.AccountName__c == null && visitPlan.DateOfVisit__c == null && visitPlan2.DateOfVisit__c == null){
+        if(SalesName.salesName == null && visitPlan.AccountName__c == null && visitPlan.DateOfVisit__c == null && visitPlan2.DateOfVisit__c == null){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, '检索条件不能为空'));
-            system.debug(salesName);
+            system.debug(SalesName.salesName);
             system.debug(visitPlan.AccountName__c);
             system.debug(visitPlan.DateOfVisit__c);
             system.debug(visitPlan2.DateOfVisit__c);

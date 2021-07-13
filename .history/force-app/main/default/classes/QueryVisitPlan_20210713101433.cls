@@ -32,8 +32,7 @@ public with sharing class QueryVisitPlan {
     public List<VisitPlan__c> getVisitPlans() {
         try {            
             visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :5 offset :counter];
-            System.debug(visitPlanList);
-            totalSize = visitPlanList.size();            
+            System.debug(visitPlanList);            
             return visitPlanList;
         } catch (Exception e) {
             ApexPages.addMessages(e);
@@ -44,6 +43,7 @@ public with sharing class QueryVisitPlan {
     // 变量 Total_size 的get方法
     // 返回Total_size的值
     public Integer getTotalSize() {
+        AggregateResult[] result = [SELECT count() FROM VisitPlan__c];
         return totalSize;
     }
     

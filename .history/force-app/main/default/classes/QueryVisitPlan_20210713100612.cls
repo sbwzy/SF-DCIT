@@ -32,8 +32,7 @@ public with sharing class QueryVisitPlan {
     public List<VisitPlan__c> getVisitPlans() {
         try {            
             visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :5 offset :counter];
-            System.debug(visitPlanList);
-            totalSize = visitPlanList.size();            
+            System.debug(visitPlanList);            
             return visitPlanList;
         } catch (Exception e) {
             ApexPages.addMessages(e);

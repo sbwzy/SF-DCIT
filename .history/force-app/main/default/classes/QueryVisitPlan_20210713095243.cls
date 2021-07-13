@@ -31,9 +31,8 @@ public with sharing class QueryVisitPlan {
     //变量 visitPlanList 的get方法，数据库查询
     public List<VisitPlan__c> getVisitPlans() {
         try {            
-            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :5 offset :counter];
-            System.debug(visitPlanList);
-            totalSize = visitPlanList.size();            
+            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :listSize  offset :counter];
+            System.debug(visitPlanList);            
             return visitPlanList;
         } catch (Exception e) {
             ApexPages.addMessages(e);
