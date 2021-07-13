@@ -18,11 +18,11 @@ public with sharing class QueryVisitPlan {
     //分页参数
     public Integer counter = 0;  //基于第一位的偏移量
     public static  Integer listSize = 5;//每页显示5条记录
-    public Integer totalSize; //总记录数
+    public Integer totalSize = 0; //总记录数
     
     // 获取拜访计划
     public QueryVisitPlan() {
-        totalSize = 0;
+        totalSize = [SELECT count() FROM VisitPlan__c];
         visitPlanList = new List<VisitPlan__c>();
         visitPlan = new VisitPlan__c();
         visitPlan2 = new VisitPlan__c();
@@ -32,6 +32,7 @@ public with sharing class QueryVisitPlan {
     public List<VisitPlan__c> getVisitPlans() {
         try {            
             visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit 5 offset :counter];
+            System.debug(visitPlanList);
             totalSize = visitPlanList.size();            
             return visitPlanList;
         } catch (Exception e) {
@@ -80,41 +81,41 @@ public with sharing class QueryVisitPlan {
     
     //数据查询
     public void query(){
+        system.debug(salesName);
+        system.debug(visitPlan.AccountName__c);
+        system.debug(visitPlan.DateOfVisit__c);
+        system.debug(visitPlan2.DateOfVisit__c);
+        
         if( String.isBlank(salesName)&& visitPlan.AccountName__c == null && visitPlan.DateOfVisit__c == null && visitPlan2.DateOfVisit__c == null){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, '检索条件不能为空'));            
             return;
         }       
         String sql = 'SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c WHERE Id != null';
-        String sqlNum = 'SELECT count(Id) FROM VisitPlan__c WHERE Id != null';
         //销售名查询        
         if(salesName.length() > 0){
             sql += ' and SalesName__c = '+'\''+salesName+'\'';
-            sqlNum += ' and SalesName__c = '+'\''+salesName+'\'';
         }
         //客户名查询
         if(visitPlan.AccountName__c != null){
             sql += ' and AccountName__c = '+'\''+visitPlan.AccountName__c+'\'';
-            sqlNum += ' and AccountName__c = '+'\''+visitPlan.AccountName__c+'\'';
         }
         //拜访时间查询        
         if(visitPlan.DateOfVisit__c != null && visitPlan2.DateOfVisit__c != null){
             Date d1 = visitPlan.DateOfVisit__c;
             Date d2 = visitPlan2.DateOfVisit__c;
             sql +=  ' and DateOfVisit__c >= : d1 and DateOfVisit__c <= : d2';
-            sqlNum +=  ' and DateOfVisit__c >= : d1 and DateOfVisit__c <= : d2';
             
         }
+        System.debug(sql);
         sql += ' limit 5 offset :counter';
-        AggregateResult[] groupedResults = Database.query(sqlNum);
-        totalSize = (Integer)groupedResults[0].get('expr0');
         visitPlanList = Database.query(sql);
+        //totalSize = visitPlanList.size(visitPlanList);
+        System.debug(visitPlanList);
     }
     
     // 变量 Total_size 的get方法
     // 返回Total_size的值
-    //System.debug(totalSize);
     public Integer getTotalSize() {
-        System.debug(totalSize);
         return totalSize;
     }
     

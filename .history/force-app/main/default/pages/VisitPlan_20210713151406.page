@@ -18,7 +18,7 @@
         <apex:pageBlock >
             
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,buttons"/>
+                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,msg1"/>
                 <apex:commandButton value="清除条件"/>
             </apex:pageBlockButtons>
                       
