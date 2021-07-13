@@ -15,10 +15,10 @@
         <div style="float: left; margin: 0 auto; margin-left: 10px; line-height: 30px;">
             <apex:outputLabel value="New Visit Plan" style="font-size: 20px;"></apex:outputLabel>
         </div>
-        <apex:pageBlock > <apex:pageMessages id="msg1" />
+        <apex:pageBlock > <apex:pageMessages id="msg" />
             
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,msg1"/>
+                <apex:commandButton value="检索" action="{!query}" reRender="showpanel,msg"/>
                 <apex:commandButton value="清除条件"/>
             </apex:pageBlockButtons>
                       
