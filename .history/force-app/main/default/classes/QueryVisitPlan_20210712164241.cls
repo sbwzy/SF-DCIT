@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : robert
  * @group             : dcit-hf
- * @last modified on  : 07-13-2021
+ * @last modified on  : 07-12-2021
  * @last modified by  : robert
  * Modifications Log 
  * Ver   Date         Author   Modification
@@ -31,7 +31,7 @@ public with sharing class QueryVisitPlan {
     //变量 visitPlanList 的get方法，数据库查询
     public List<VisitPlan__c> getVisitPlans() {
         try {            
-            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :listSize  offset :counter];
+            visitPlanList = [SELECT Id, Owner.Name, Name, AccountName__c, DateOfVisit__c, VisitMethod__c, SalesName__c FROM VisitPlan__c limit :listSize  offset :counter];// limit x,y            
             System.debug(visitPlanList);            
             return visitPlanList;
         } catch (Exception e) {
@@ -40,16 +40,19 @@ public with sharing class QueryVisitPlan {
         }
     }
     
+    // 变量 Total_size 的get方法
     // 返回Total_size的值
     public Integer getTotalSize() {
         return totalSize;
     }
     
+    // 变量 PageNumber 的get方法
     // 计算当前页码
     public Integer getPageNumber() {
         return counter/listSize   + 1;
     }
     
+    // 变量 TotalPages 的get方法
     // 计算总页数
     public Integer getTotalPages() {
         if (math.mod(totalSize, listSize )  > 0) {
@@ -66,7 +69,7 @@ public with sharing class QueryVisitPlan {
         return null;
     }
     
-    //上一页
+    // 上一页
     public PageReference previous() {
         counter -= listSize ;
         if(counter < 0){
@@ -78,7 +81,7 @@ public with sharing class QueryVisitPlan {
         return null;
     }
     
-    //下一页
+    // 下一页
     public PageReference next() {
         counter += listSize ;
         if(counter > totalSize){
@@ -90,7 +93,7 @@ public with sharing class QueryVisitPlan {
         return null;
     }
     
-    //尾页
+    // 尾页
     public PageReference end() {
         counter = totalSize - math.mod(totalSize, listSize ) ;
         getVisitPlans();
