@@ -19,10 +19,10 @@
             
             <apex:pageBlockButtons location="top">
                 <apex:commandButton value="检索" action="{!query}" reRender="showpanel,buttons"/>
-                <apex:commandButton value="清除条件" reRender="showpanel,buttons,text"/>
+                <apex:commandButton value="清除条件" reRender="from"/>
             </apex:pageBlockButtons>
                       
-            <apex:pageBlockSection id='text'>
+            <apex:pageBlockSection >
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="销售姓名："></apex:outputLabel>
                     <apex:inputText value="{!SalesName}"></apex:inputText>
