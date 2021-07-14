@@ -1,7 +1,7 @@
 ({
-    saveAccount : function(component) {
-        var action = component.get("c.createAccount");
-        action.setParams({accountName:component.get("v.accountName")});
+    showAccount : function(component) {
+        var action = component.get("v.accountList");
+        var handleChange = 
 
         action.setCallback(this, function (response){
             var state = response.getState();

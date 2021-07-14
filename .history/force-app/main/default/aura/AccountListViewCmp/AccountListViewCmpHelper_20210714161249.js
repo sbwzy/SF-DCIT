@@ -1,7 +1,6 @@
 ({
-    saveAccount : function(component) {
-        var action = component.get("c.createAccount");
-        action.setParams({accountName:component.get("v.accountName")});
+    showAccount : function(component) {
+        var action = component.get("v.accountList");
 
         action.setCallback(this, function (response){
             var state = response.getState();
@@ -21,7 +20,7 @@
                         console.log("Error message:" + errors[0].message);
                     }
                     else {
-                        console.log("Unknow error");
+                        console.log("Unknow error")
                     }
                 }
             }
