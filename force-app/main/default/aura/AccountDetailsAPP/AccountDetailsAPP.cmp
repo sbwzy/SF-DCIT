@@ -1,0 +1,38 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-15-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-15-2021   robert   Initial Version
+-->
+<aura:component implements="force:appHostable" controller="AccountDetailsCtrl">
+    <lightning:input type="search" label="Search" name="search" />
+
+    <!-- attributes -->
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0"/>
+    <aura:attribute name="maxRowSelection" type="Integer" default="5"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    <!-- Imports -->
+    <aura:import library="lightningcomponentdemo:mockdataFaker" property="mockdataLibrary"/>
+
+
+
+    <!-- the container element determine the height of the datatable -->
+    <div style="height: 300px">
+        <h1>Selected Rows: {! v.selectedRowsCount }</h1>
+        <lightning:datatable
+            columns="{! v.columns }"
+            data="{! v.data }"
+            keyField="id"
+            maxRowSelection="{! v.maxRowSelection }"
+            onrowselection="{! c.updateSelectedText }"/>
+    </div>
+</aura:component>	

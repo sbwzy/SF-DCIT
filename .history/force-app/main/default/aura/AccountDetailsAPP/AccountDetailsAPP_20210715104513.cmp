@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-15-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-15-2021   robert   Initial Version
+-->
+<aura:component implements="force:appHostable">
+    <lightning:input type="search" label="Search" name="search" />
+
+    <!-- attributes -->
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+
+    <!-- the container element determine the height of the datatable -->
+    <div style="height: 300px">
+        <lightning:datatable
+                keyField="id"
+                data="{! v.data }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+</aura:component>	
