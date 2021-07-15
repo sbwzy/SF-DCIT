@@ -1,5 +1,5 @@
 ({
-    doInit: function (cmp, event, helper) {
+    init: function (cmp, event, helper) {
         var fetchData = {
             accountNumber: "AccountNumber",
             accountName: "Name",

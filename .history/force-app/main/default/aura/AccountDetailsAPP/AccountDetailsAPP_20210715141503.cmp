@@ -18,7 +18,7 @@
     <aura:attribute name="maxRowSelection" type="Integer" default="5"/>
 
     <!-- handlers-->
-    <aura:handler name="doInit" value="{! this }" action="{! c.doInit }"/>
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
 
     <!-- the container element determine the height of the datatable -->
     <div style="height: 300px">

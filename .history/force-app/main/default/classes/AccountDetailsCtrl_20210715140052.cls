@@ -13,6 +13,11 @@ public with sharing class AccountDetailsCtrl {
     @AuraEnabled
     public static List<Account> getAllAccount(){
         try {
+            // List<AccountWrapper> accList = new list<AccountWrapper>();
+            // for(Account acc:[SELECT AccountNumber,Name,AccountSource FROM Account]){
+            //     AccountWrapper wrapper = new AccountWrapper(acc.AccountNumber, acc.Name, acc.AccountSource);
+            //     accList.add(wrapper);
+            // }
             return [SELECT Id,AccountNumber,Name,AccountSource FROM Account limit 50000];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
