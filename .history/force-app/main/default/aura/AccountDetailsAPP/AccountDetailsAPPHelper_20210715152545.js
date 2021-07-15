@@ -5,12 +5,7 @@
             var state = response.getState();
             if (state == "SUCCESS"){
                 console.log(response.getReturnValue());
-                //获取链接前的动态头
-                let domain = window.location.host;
                 var results = response.getReturnValue();
-                results.forEach(ele=>{
-                    ele.URL = domain+'/lightning/r/Account/' + ele.Id + '/view';
-                });
                 cmp.set('v.data', results);
             }
             else if(state == "INCOMPLETE"){
