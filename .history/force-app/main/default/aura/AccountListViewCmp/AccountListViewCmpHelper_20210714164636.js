@@ -6,8 +6,8 @@
         action.setCallback(this, function (response){
             var state = response.getState();
             if (state == "SUCCESS"){
-
-                var compEvent = component.getEvent('LoadAllAContactEvt');
+                
+                var compEvent = component.getEvent('LoadAllAccount');
                 compEvent.fire();
             }
             else if(state == "INCOMPLETE"){
