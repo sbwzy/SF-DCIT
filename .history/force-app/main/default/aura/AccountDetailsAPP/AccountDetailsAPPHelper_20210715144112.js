@@ -1,13 +1,15 @@
 ({
-    fetchData: function (cmp,numberOfRecords) {
+    fetchData: function (cmp, fetchData, numberOfRecords) {
         
         var action = cmp.get('c.getAllAccount');
         action.setCallback(this, function (response){
             var state = response.getState();
             if (state == "SUCCESS"){
                 console.log(response.getReturnValue());
-                var results = response.getReturnValue();
-                cmp.set('v.data', results);
+
+                results = response.getReturnValue();
+                    cmp.set('v.data', results);
+                
             }
             else if(state == "INCOMPLETE"){
                 //do something

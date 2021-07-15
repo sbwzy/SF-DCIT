@@ -1,5 +1,5 @@
 ({
-    fetchData: function (cmp,numberOfRecords) {
+    fetchData: function (cmp, fetchData, numberOfRecords) {
         
         var action = cmp.get('c.getAllAccount');
         action.setCallback(this, function (response){

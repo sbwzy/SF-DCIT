@@ -18,8 +18,9 @@
     <!-- handlers-->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
 
-    <!-- the container element determine the height of the datatable -->   
-    <lightning:card footer="Card Footer" title="客户">
+    <!-- the container element determine the height of the datatable -->
+    
+    <lightning:card footer="Card Footer" title="客户" margintop:'10px'>
         <aura:set attribute="actions">
             <!--lightning:button label="New"/-->
         </aura:set>
@@ -32,5 +33,7 @@
                 />                
             </div>
         </p>
-    </lightning:card>   
+    </lightning:card>
+    
+    
 </aura:component>
