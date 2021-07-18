@@ -32,9 +32,6 @@
     },
 
     viewContacts: function (row){
-        console.log('1');
-        console.log(row.Id);
-        console.log('2');
-        $A.enqueueAction(action);
+        console.log();
     }
 });

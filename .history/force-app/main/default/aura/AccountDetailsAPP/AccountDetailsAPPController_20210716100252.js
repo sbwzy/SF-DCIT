@@ -13,13 +13,5 @@
     updateSelectedText: function (cmp, event) {
         var selectedRows = event.getParam('selectedRows');
         cmp.set('v.selectedRowsCount', selectedRows.length);
-    },
-
-    viewContacts: function (cmp, event, helper){
-        var action = event.getParam('action');
-        var row = event.getParam('row');
-        if (action.name === 'view_contacts'){
-            helper.viewContacts(row);
-        }
     }
 });

@@ -16,10 +16,6 @@
     },
 
     viewContacts: function (cmp, event, helper){
-        var action = event.getParam('action');
-        var row = event.getParam('row');
-        if (action.name === 'view_contacts'){
-            helper.viewContacts(row);
-        }
+        var action = 
     }
 });
