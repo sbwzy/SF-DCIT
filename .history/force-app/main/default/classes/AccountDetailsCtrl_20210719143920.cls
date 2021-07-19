@@ -31,11 +31,11 @@ public with sharing class AccountDetailsCtrl {
 
     //添加客户联系人
     @AuraEnabled
-    public static Contact addContact(String accountId, String contactName, String contactPhone, String contactTitle){
+    public static List<Contact> addContact(String accountId, String contactName, Phone contactPhone, String contactTitle){
         try {
-            Contact ctt = new Contact(AccountId=accountId, Lastname=contactName, Phone=contactPhone, Title=contactTitle);
-            insert ctt;
-            return ctt;
+            Account acc = new Account(AccountId=accountId, Name=contactName, Phone=contactPhone, Title=contactTitle);
+            insert acc;
+            return acc;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

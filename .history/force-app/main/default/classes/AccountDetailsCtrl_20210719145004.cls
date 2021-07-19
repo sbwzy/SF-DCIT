@@ -33,7 +33,7 @@ public with sharing class AccountDetailsCtrl {
     @AuraEnabled
     public static Contact addContact(String accountId, String contactName, String contactPhone, String contactTitle){
         try {
-            Contact ctt = new Contact(AccountId=accountId, Lastname=contactName, Phone=contactPhone, Title=contactTitle);
+            Contact ctt = new Contact(AccountId=accountId, Name=contactName, Phone=contactPhone, Title=contactTitle);
             insert ctt;
             return ctt;
         } catch (Exception e) {

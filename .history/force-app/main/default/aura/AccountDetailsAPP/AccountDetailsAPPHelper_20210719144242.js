@@ -64,7 +64,7 @@
             }
         });
         $A.enqueueAction(action);
-    },
+    }
 
     //添加客户联系人响应事件
     addContact : function(cmp) {
