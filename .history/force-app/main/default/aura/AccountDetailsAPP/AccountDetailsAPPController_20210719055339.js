@@ -24,31 +24,40 @@
     },
    
     openModel: function(component, event, helper) {
+        // for Display Model,set the "isOpen" attribute to "true"
         component.set("v.isOpen", true);
     },
    
     closeModel: function(component, event, helper) {
+        // for Hide/Close Model,set the "isOpen" attribute to "Fasle"  
         component.set("v.isOpen", false);
     },
    
     likenClose: function(component, event, helper) {
+        // Display alert message on the click on the "Like and Close" button from Model Footer 
+        // and set set the "isOpen" attribute to "False for close the model Box.
+        alert('thanks for like Us :)');
         component.set("v.isOpen", false);
     },
 
     handleRowAction: function (cmp, event, helper) {
-        console.log('1');
-       
-        console.log('2');
+        var action = event.getParam('action');
         var row = event.getParam('row');
-        console.log('3');
-       
-        cmp.set("v.isOpen", true);
-        cmp.set('v.contactsColumns', [
-            {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
-            {label: '职位', fieldName: 'Title', type: 'text'}
-        ]);
-        console.log('a');
-        helper.viewContacts(row, cmp);
+        switch (action.name) {
+            case 'view_contacts':
+                cmp.set("v.isOpen", true);
+                cmp.set('v.contactsColumns', [
+                    {label: '联系人姓名', fileName: '', type: 'text'},
+                    {label: '联系人电话', fileName: '', type: 'text'},
+                    {label}
+                ]);
+                break;
+            case 'edit_status':
+                helper.editRowStatus(cmp, row, action);
+                break;
+            default:
+                helper.showRowDetails(row);
+                break;
+        }
     }
 });

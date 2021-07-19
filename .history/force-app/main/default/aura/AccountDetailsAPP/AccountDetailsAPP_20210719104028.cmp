@@ -24,7 +24,7 @@
     <!-- the container element determine the height of the datatable -->   
     <lightning:card title="客户">
         <aura:set attribute="actions">
-            <lightning:button label="添加客户联系人" onclick="{! c.addContact }"/>
+            <!--lightning:button label="New"/-->
         </aura:set>
         <p class="slds-p-horizontal_small">
             <div style="height: 900px">        
@@ -74,6 +74,10 @@
                     </div>
                     <!--###### MODAL BOX FOOTER Part Start ######-->
                     <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="删除"
+                                          title="deleteContact"
+                                          onclick="{! c.deleteContact}"/>
                         <lightning:button variant="neutral" 
                                           label="退出"
                                           title="Cancel"

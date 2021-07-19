@@ -43,10 +43,10 @@
         console.log('3');
        
         cmp.set("v.isOpen", true);
-        cmp.set('v.contactsColumns', [
-            {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
-            {label: '职位', fieldName: 'Title', type: 'text'}
+        cmp.set('v.contactColumns', [
+            {label: '联系人姓名', filedName: 'Name', type: 'text'},
+            {label: '联系人电话', filedName: 'Phone', type: 'Phone'},
+            {label: '职位', filedName: 'Title', type: 'text'}
         ]);
         console.log('a');
         helper.viewContacts(row, cmp);

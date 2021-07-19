@@ -33,6 +33,7 @@
 
     viewContacts: function (row, cmp){
         console.log('6');
+       
         console.log(JSON.parse(JSON.stringify(row)).Id);//取到当前客户的ID
         var action = cmp.get('c.getAllContacts');
         action.setParam("accountId", JSON.parse(JSON.stringify(row)).Id);
@@ -41,7 +42,6 @@
             var state = response.getState();
             console.log('8');
             if (state == "SUCCESS"){
-                console.log(response.getReturnValue());
                 var results = response.getReturnValue();
                 cmp.set('v.contactData', results);
                 console.log('9');

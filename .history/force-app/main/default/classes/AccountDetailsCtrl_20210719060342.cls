@@ -21,17 +21,7 @@ public with sharing class AccountDetailsCtrl {
 
     //获取客户下的所有联系人
     @AuraEnabled
-    public static List<Contact> getAllContacts(String accountId){
-        try {
-            return [SELECT Id,Name,Phone,Title FROM Contact WHERE AccountId =: accountId];
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
-    //添加客户联系人
-    @AuraEnabled
-    public static List<Contact> addContact(){
+    public static List<Contact> getAllContacts(){
         try {
             
         } catch (Exception e) {

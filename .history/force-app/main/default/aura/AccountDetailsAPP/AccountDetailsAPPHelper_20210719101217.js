@@ -41,7 +41,6 @@
             var state = response.getState();
             console.log('8');
             if (state == "SUCCESS"){
-                console.log(response.getReturnValue());
                 var results = response.getReturnValue();
                 cmp.set('v.contactData', results);
                 console.log('9');

@@ -36,19 +36,26 @@
     },
 
     handleRowAction: function (cmp, event, helper) {
-        console.log('1');
-       
-        console.log('2');
+        var action = event.getParam('action');
         var row = event.getParam('row');
-        console.log('3');
-       
-        cmp.set("v.isOpen", true);
-        cmp.set('v.contactsColumns', [
-            {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
-            {label: '职位', fieldName: 'Title', type: 'text'}
-        ]);
-        console.log('a');
-        helper.viewContacts(row, cmp);
+        switch (action.name) {
+            case 'view_contacts':
+                system.consle()
+                cmp.set("v.isOpen", true);
+                cmp.set('v.contactsColumns', [
+                    {label: '联系人姓名', fileName: 'Name', type: 'text'},
+                    {label: '联系人电话', fileName: 'Phone', type: 'Phone'},
+                    {label: '职位', fileName: 'Title', type: 'text'}
+                ]);
+
+                helper.viewContacts(row);
+                break;
+            case 'edit_status':
+                helper.editRowStatus(cmp, row, action);
+                break;
+            default:
+                helper.showRowDetails(row);
+                break;
+        }
     }
 });

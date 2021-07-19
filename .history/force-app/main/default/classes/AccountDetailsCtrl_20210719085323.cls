@@ -28,14 +28,4 @@ public with sharing class AccountDetailsCtrl {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
-    //添加客户联系人
-    @AuraEnabled
-    public static List<Contact> addContact(){
-        try {
-            
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
 }

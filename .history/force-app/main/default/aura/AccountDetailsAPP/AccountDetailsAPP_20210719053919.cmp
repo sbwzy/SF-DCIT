@@ -15,8 +15,6 @@
     <aura:attribute name="data" type="Object"/>
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute name="contactData" type="Object" />
-    <aura:attribute name="contactsColumns" type="List"/>
 
     <!-- handlers-->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
@@ -24,7 +22,7 @@
     <!-- the container element determine the height of the datatable -->   
     <lightning:card title="客户">
         <aura:set attribute="actions">
-            <lightning:button label="添加客户联系人" onclick="{! c.addContact }"/>
+            <!--lightning:button label="New"/-->
         </aura:set>
         <p class="slds-p-horizontal_small">
             <div style="height: 900px">        
@@ -40,6 +38,11 @@
     </lightning:card>
     
     <div class="slds-m-around_xx-large">
+        
+        <lightning:button variant="brand"
+                          label="About SFDCmonkey.com"
+                          title="About SFDCmonkey.com"
+                          onclick="{! c.openModel }" />
         <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->   
         <aura:if isTrue="{!v.isOpen}">
  
@@ -55,29 +58,27 @@
                                               class="slds-modal__close"/>
                         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">客户联系人列表</h2>
                     </header>
-                    <!--###### MODAL BOX BODY Part Start ######-->
+                    <!--###### MODAL BOX BODY Part Start######-->
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                        <lightning:card>
-                            <aura:set attribute="actions">
-                            </aura:set>
-                            <p class="slds-p-horizontal_small">
-                                <div style="height: 500px">        
-                                    
-                                    <lightning:datatable
-                                        columns="{! v.contactsColumns }"
-                                        data="{! v.contactData }"
-                                        keyField="Id"
-                                    />                
-                                </div>
-                            </p>
-                        </lightning:card>
+                        <p><b>The goal of this blog is to provide tips and tricks/workarounds for salesforce developer and admins.
+                            Many of us face the same issues and have the same questions when using and implementing Salesforce.
+                            As a community of users and developers, it is important for us to share our experiences.
+                            I try to reach out to other users and help the Salesforce community in general.
+                            Much of this blog will focus on Lightning, but I will also
+                            cover some of the more basic topics in salesforce.
+                            </b>
+                        </p>
                     </div>
                     <!--###### MODAL BOX FOOTER Part Start ######-->
                     <footer class="slds-modal__footer">
                         <lightning:button variant="neutral" 
-                                          label="退出"
+                                          label="Cancel"
                                           title="Cancel"
                                           onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand" 
+                                          label="Like and Close"
+                                          title="Like and Close"
+                                          onclick="{! c.likenClose }"/>
                     </footer>
                 </div>
             </section>

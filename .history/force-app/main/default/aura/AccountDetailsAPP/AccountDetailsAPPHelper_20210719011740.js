@@ -31,36 +31,27 @@
         $A.enqueueAction(action);
     },
 
-    viewContacts: function (row, cmp){
-        console.log('6');
-        console.log(JSON.parse(JSON.stringify(row)).Id);//取到当前客户的ID
-        var action = cmp.get('c.getAllContacts');
-        action.setParam("accountId", JSON.parse(JSON.stringify(row)).Id);
-        console.log('7');
-        action.setCallback(this, function (response){
-            var state = response.getState();
-            console.log('8');
-            if (state == "SUCCESS"){
-                console.log(response.getReturnValue());
-                var results = response.getReturnValue();
-                cmp.set('v.contactData', results);
-                console.log('9');
-            }
-            else if(state == "INCOMPLETE"){
-                //do something
-            }
-            else if(state == "ERROR"){
-                var errors = response.getError();
-                if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message:" + errors[0].message);
-                    }
-                    else {
-                        console.log("Unknow error");
-                    }
-                }
-            }
-        });
+    viewContacts: function (row){
+        console.log('1');
+        console.log(row.Id);
+        console.log('2');
         $A.enqueueAction(action);
-    }
+    },
+    
+    openModel: function(component, event, helper) {
+        // for Display Model,set the "isOpen" attribute to "true"
+        component.set("v.isOpen", true);
+     },
+   
+     closeModel: function(component, event, helper) {
+        // for Hide/Close Model,set the "isOpen" attribute to "Fasle"  
+        component.set("v.isOpen", false);
+     },
+   
+     likenClose: function(component, event, helper) {
+        // Display alert message on the click on the "Like and Close" button from Model Footer 
+        // and set set the "isOpen" attribute to "False for close the model Box.
+        alert('thanks for like Us :)');
+        component.set("v.isOpen", false);
+     },
 });

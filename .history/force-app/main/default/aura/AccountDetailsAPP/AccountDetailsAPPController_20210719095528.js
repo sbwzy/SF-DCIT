@@ -37,18 +37,21 @@
 
     handleRowAction: function (cmp, event, helper) {
         console.log('1');
-       
+        var action = event.getParam('action');
         console.log('2');
         var row = event.getParam('row');
         console.log('3');
-       
-        cmp.set("v.isOpen", true);
-        cmp.set('v.contactsColumns', [
-            {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
-            {label: '职位', fieldName: 'Title', type: 'text'}
-        ]);
-        console.log('a');
-        helper.viewContacts(row, cmp);
-    }
+        switch (action.name) {
+            case 'view_contacts':
+                console.log('4');
+                cmp.set("v.isOpen", true);
+                cmp.set('v.contactsColumns', [
+                    {label: '联系人姓名', fileName: 'Name', type: 'text'},
+                    {label: '联系人电话', fileName: 'Phone', type: 'Phone'},
+                    {label: '职位', fileName: 'Title', type: 'text'}
+                ]);
+                console.log('a');
+                helper.viewContacts(row);
+                break;
+    }}
 });
