@@ -33,9 +33,7 @@ public with sharing class AccountDetailsCtrl {
     @AuraEnabled
     public static List<Contact> addContact(){
         try {
-            Account acc = new Account(Name=contactName, Phone=contactPhone, Title=contactTitle);
-            insert acc;
-            return acc;
+            Account acc = new Account(Name=)
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

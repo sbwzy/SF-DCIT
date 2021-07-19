@@ -25,13 +25,13 @@
 
     <!-- handlers-->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
-    <!-- registerEvt -->
+
     <aura:registerEvent name="LoadAllContact" type="c:LoadAllContactEvt" />
 
-    <!-- 搜索添加客户联系人 -->   
+    <!-- the container element determine the height of the datatable -->   
     <lightning:card title="客户">
         <aura:set attribute="actions">
-            <lightning:button label="添加客户联系人" title="点击添加客户联系人" name="add_contacts"/>
+            <lightning:button label="添加客户联系人" title="点击添加客户联系人" name=""/>
         </aura:set>
         <p class="slds-p-horizontal_small">
             <div style="height: 900px">        
@@ -45,9 +45,9 @@
             </div>
         </p>
     </lightning:card>
-    <!-- 客户联系人展示 -->
+    
     <div class="slds-m-around_xx-large">
-        <!--aura:if模态框弹出客户联系人信息列表 -->   
+        <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->   
         <aura:if isTrue="{!v.isOpen}">
  
             <!--###### MODAL BOX Start######--> 
@@ -69,7 +69,7 @@
                             </aura:set>
                             <p class="slds-p-horizontal_small">
                                 <div style="height: 500px">        
-                                    <!-- 数据列表 -->
+                                    
                                     <lightning:datatable
                                         columns="{! v.contactsColumns }"
                                         data="{! v.contactData }"
@@ -95,7 +95,7 @@
     </div>
     
     <div class="slds-m-around_xx-large">
-        <!--aura:if模态框展示联系人添加面板 -->   
+        <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->   
         <aura:if isTrue="{!v.isContactOpen}">
  
             <!--###### MODAL BOX Start######--> 
@@ -116,7 +116,6 @@
                             <aura:set attribute="actions">
                             </aura:set>
                             <p class="slds-p-horizontal_small">
-                                <!-- 输入信息 -->
                                 <div class="slds-form-element">
                                     <lightning:input name="accountName" label="客户名" placeholder="输入客户名" value='{!v.accountName}'/>
                                     <lightning:input name="contactName" label="联系人名" placeholder="输入联系人名" value='{!v.contactName}'/>
@@ -135,7 +134,7 @@
                         <lightning:button variant="neutral" 
                                           label="退出"
                                           title="Cancel"
-                                          onclick="{! c.closeContactModel }"/>
+                                          onclick="{! c.closeModel }"/>
                     </footer>
                 </div>
             </section>

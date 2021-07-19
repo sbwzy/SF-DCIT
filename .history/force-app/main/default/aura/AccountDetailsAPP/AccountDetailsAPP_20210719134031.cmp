@@ -31,7 +31,7 @@
     <!-- 搜索添加客户联系人 -->   
     <lightning:card title="客户">
         <aura:set attribute="actions">
-            <lightning:button label="添加客户联系人" title="点击添加客户联系人" name="add_contacts"/>
+            <lightning:button label="添加客户联系人" title="点击添加客户联系人" name="add_"/>
         </aura:set>
         <p class="slds-p-horizontal_small">
             <div style="height: 900px">        
@@ -135,7 +135,7 @@
                         <lightning:button variant="neutral" 
                                           label="退出"
                                           title="Cancel"
-                                          onclick="{! c.closeContactModel }"/>
+                                          onclick="{! c.closeModel }"/>
                     </footer>
                 </div>
             </section>

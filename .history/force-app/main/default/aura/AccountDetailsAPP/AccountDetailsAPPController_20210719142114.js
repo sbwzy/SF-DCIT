@@ -26,13 +26,6 @@
     },
     
     //按钮‘添加联系人列表’的响应事件
-    addContacts : function(cmp, evevt,helper){
-        var action = event.getParam('action');
-        if(action.name === 'add_contacts'){
-            cmp.set("v.isContactOpen", true);
-        }
-    },
-
     openModel: function(component, event, helper) {
         component.set("v.isOpen", true);
     },

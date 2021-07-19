@@ -135,7 +135,7 @@
                         <lightning:button variant="neutral" 
                                           label="退出"
                                           title="Cancel"
-                                          onclick="{! c.closeContactModel }"/>
+                                          onclick="{! c.closeModel }"/>
                     </footer>
                 </div>
             </section>

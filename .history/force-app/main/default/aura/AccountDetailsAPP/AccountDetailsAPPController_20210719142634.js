@@ -29,7 +29,7 @@
     addContacts : function(cmp, evevt,helper){
         var action = event.getParam('action');
         if(action.name === 'add_contacts'){
-            cmp.set("v.isContactOpen", true);
+            
         }
     },
 

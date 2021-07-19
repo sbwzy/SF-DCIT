@@ -29,7 +29,7 @@
     addContacts : function(cmp, evevt,helper){
         var action = event.getParam('action');
         if(action.name === 'add_contacts'){
-            cmp.set("v.isContactOpen", true);
+            helper.addContact(cmp);
         }
     },
 
@@ -41,7 +41,7 @@
         component.set("v.isOpen", false);
     },
 
-    openContactModel: function(component, event, helper) {
+    2: function(component, event, helper) {
         component.set("v.isContactOpen", true);
     },
    

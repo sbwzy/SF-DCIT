@@ -24,15 +24,7 @@
             helper.viewContacts(row);
         }
     },
-    
-    //按钮‘添加联系人列表’的响应事件
-    addContacts : function(cmp, evevt,helper){
-        var action = event.getParam('action');
-        if(action.name === 'add_contacts'){
-            cmp.set("v.isContactOpen", true);
-        }
-    },
-
+   
     openModel: function(component, event, helper) {
         component.set("v.isOpen", true);
     },
@@ -71,7 +63,7 @@
         var contactPhone = cmp.get('v.contactPhone');
         var contactTitle = cmp.get('v.contactTitle');
         if(contactName != null){
-            helper.addContact(cmp);
+            helper.addContact();
         }
         else{
             alter('请输入联系人的姓名');

@@ -69,7 +69,7 @@
     //添加客户联系人响应事件
     addContact : function(cmp) {
         var action = cmp.get("c.addContact");
-        action.setParam({accountName:cmp.get("v.accountName"), contactName:cmp.get("v.contactName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
+        action.setParam(accountName:cmp.get("v.accountName"), contactName:cmp.get("v.contactName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
 
         action.setCallback(this, function (response){
             var state = response.getState();
@@ -95,5 +95,8 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    }，
+
+    //弹出添加联系人模态框
+
 });

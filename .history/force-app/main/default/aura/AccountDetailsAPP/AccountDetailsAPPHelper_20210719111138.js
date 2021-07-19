@@ -1,5 +1,4 @@
 ({
-    //展示所有客户
     fetchData: function (cmp,numberOfRecords) {       
         var action = cmp.get('c.getAllAccount');
         action.setCallback(this, function (response){
@@ -32,7 +31,6 @@
         $A.enqueueAction(action);
     },
 
-    //显示当前客户的联系人
     viewContacts: function (row, cmp){
         console.log('6');
         console.log(JSON.parse(JSON.stringify(row)).Id);//取到当前客户的ID
@@ -66,10 +64,9 @@
         $A.enqueueAction(action);
     }
 
-    //添加客户联系人响应事件
     addContact : function(cmp) {
         var action = cmp.get("c.addContact");
-        action.setParam({accountName:cmp.get("v.accountName"), contactName:cmp.get("v.contactName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
+        action.setParam(accountName:cmp.get("v.accountName"), contactName:cmp.get("v.contactName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
 
         action.setCallback(this, function (response){
             var state = response.getState();
