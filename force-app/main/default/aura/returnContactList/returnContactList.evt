@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="returnContactList">
+    <!--  传递实时联系人  -->
+    <aura:attribute name="contactList" type="List"></aura:attribute>
+</aura:event>

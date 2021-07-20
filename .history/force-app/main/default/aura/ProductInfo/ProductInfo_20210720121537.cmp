@@ -1,0 +1,77 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-20-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-20-2021   robert   Initial Version
+-->
+<aura:component implements="force:appHostable" controller="ProductCtrl">
+<aura:attribute name="proList" type="List"/>
+
+<aura:attribute name="findProduct" type="Product2" default="{}"/>
+<aura:attribute name="myBool" type="Boolean"/>
+
+<aura:registerEvent name="refreshEvent" type="c:refreshEvent"/>
+<div style="width: 300px">
+<div>产品名称<lightning:input value="{!v.findProduct.Name}"/></div>
+<div>产品代码<lightning:input value="{!v.findProduct.ProductCode}"/></div>
+<div style="margin-left: 250px">
+<lightning:button variant="Base" label="检索"  onclick="{!c.retrieval }" />
+</div>
+</div>
+
+
+<div aria-multiselectable="true" class="slds-form-element" style="height: 300px;overflow:scroll;"> 
+<table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+	<thead>
+		<tr class="slds-line-height_reset">
+			<th>
+				<ui:inputCheckbox aura:id="checkbox1" value="{!v.myBool}" label="" change="{!c.onCheck1}"/>
+      	  	</th>
+			<th scope="col">
+				<div class="slds-truncate">Product Name</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate">Product Code</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate">Description</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate">Family</div>
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<aura:iteration items="{!v.proList}" var="item" indexVar="index">
+		<tr>
+			<td>
+				<ui:inputCheckbox aura:id="checkbox" value="{!item.myBool__c}" label="" change="{!c.onCheck2}"/>
+
+			</td>
+			<td data-label="Product Name">
+				<div class="slds-truncate">{!item.Name}</div>
+			</td>
+
+			<td data-label="Product Code">
+				<div class="slds-truncate">{!item.ProductCode}</div>
+			</td>
+			<td data-label="Description">
+				<div class="slds-truncate">{!item.Description}</div>
+			</td>
+			<td data-label="Family">
+				<div class="slds-truncate">{!item.Family}</div>
+			</td>
+			
+		</tr>
+		</aura:iteration>
+	</tbody>
+
+</table>
+</div>
+
+</aura:component>

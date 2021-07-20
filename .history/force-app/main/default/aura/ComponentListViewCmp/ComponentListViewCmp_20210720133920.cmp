@@ -1,0 +1,54 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-20-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component controller="AccountCtrl">
+  <!-- 定义属性 -->
+  <aura:attribute name="columns" type="Object" />
+  <aura:attribute name="data" type="List" />
+
+  <!-- 添加application event的监听 -->
+  <aura:handler event="c:LoadAllContactEvt" action="{!c.doLoadAllContacts}" />
+
+  <!-- 组件初始化时定义表头和列属性 -->
+  <aura:handler name="init" value="{! this}" action="{! c.doInit }" />
+
+  <lightning:card>
+    <aura:set attribute="title">
+      <lightning:icon iconName="util:connected_apps" size="small" />
+      联系人列表视图
+    </aura:set>
+    <p class="slds-p-horizontal_small">
+    <div class="slds-form-element" style="height: 200px;overflow:scroll;">
+      <lightning:datatable columns="{! v.columns }" data="{! v.data }" keyField="Id" />
+    </div>
+    </p>
+  </lightning:card>
+</aura:component>
+
+<aura:component>
+
+    <aura:handler event="c:returnContactList" action="{!c.doInit}"/>
+
+    <!--  联系人列表  -->
+    <aura:attribute name="contactList" type="List"></aura:attribute>
+    <!--  字段  -->
+    <aura:attribute name="columns" type="List"/>
+
+
+    <div style="height: 300px; margin-top: 30px;">
+        <lightning:icon iconName="utility:connected_apps" size="small"/>
+        联系人列表
+        <lightning:datatable
+                keyField="id"
+                data="{! v.contactList }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+</aura:component>

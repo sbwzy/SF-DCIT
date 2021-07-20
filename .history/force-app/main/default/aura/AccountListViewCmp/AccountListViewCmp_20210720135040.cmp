@@ -1,0 +1,36 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-20-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component controller="AccountCtrl">
+    <aura:attribute name="accountList" type="List" />
+    <aura:attribute name="accountId" type="String" />
+
+    <aura:handler name="init" value="{! this}" action="{! c.doInit }" />
+
+    <aura:registerEvent name="onchangeEvent" type="c:returnContactList"/>
+    <!-- 暴露一个公共方法给父组件调用 -->
+    <lightning:card>
+      <aura:set attribute="title">
+        <lightning:icon iconName="utility:connected_apps" size="small" />
+        客户列表视图
+      </aura:set>
+      <p class="slds-p-horizontal_small">
+        <div class="slds-form-element" style="height: 200px;overflow:scroll;">
+          <lightning:radioGroup name="accountName"
+          label="客户名"
+          options="{! v.accountList}"
+          value="{! v.accountId }"
+          type="radio"
+          onchange="{! c.handleChange }"
+          />
+        </div>
+      </p>
+    </lightning:card>
+</aura:component>

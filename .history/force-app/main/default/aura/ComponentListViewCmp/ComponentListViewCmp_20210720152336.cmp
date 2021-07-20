@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-20-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-01-2021   robert   Initial Version
+-->
+<aura:component controller="AccountCtrl">
+
+  <aura:handler event="c:returnContactList" action="{!c.doInitA}"/>
+
+  <!--  联系人列表  -->
+  <aura:attribute name="contactList" type="List"></aura:attribute>
+  <!--  字段  -->
+  <aura:attribute name="columns" type="List"/>
+
+
+  <div style="height: 300px; margin-top: 30px;">
+    <lightning:icon iconName="utility:connected_apps" size="small"/>
+    联系人视图
+    <lightning:datatable
+            keyField="id"
+            data="{! v.contactList }"
+            columns="{! v.columns }"
+            hideCheckboxColumn="true"/>
+  </div>
+</aura:component>
