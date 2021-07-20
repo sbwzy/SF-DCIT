@@ -9,14 +9,7 @@
   1.0   07-15-2021   robert   Initial Version
 -->
 <aura:component implements="force:appHostable" controller="AccountDetailsCtrl">
-    <lightning:input type="search" label="客户名搜索" name="accountNameSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户名搜索"
-                      onclick="{! c.accountNameSearch }"/>
-    <lightning:input type="search" label="客户来源搜索" name="accountSourceSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户来源搜索"
-                      onclick="{! c.accountSourceSearch }"/>
+    <lightning:input type="search" label="Search" name="search" />
 
     <!-- attributes -->
     <aura:attribute name="data" type="Object"/>
@@ -26,8 +19,7 @@
     <aura:attribute name="contactData" type="Object" />
     <aura:attribute name="contactsColumns" type="List"/>
     <aura:attribute name="accountId" type="String" />
-    <aura:attribute name="lastName" type="String" />
-    <aura:attribute name="firstName" type="String" />
+    <aura:attribute name="contactLastName" type="String" />
     <aura:attribute name="contactPhone" type="String" />
     <aura:attribute name="contactTitle" type="String" />
 
@@ -129,11 +121,11 @@
                                     <lightning:recordEditForm objectApiName="Contact">
                                         <lightning:messages />
                                         <lightning:inputField fieldName="AccountId" value='{!v.accountId}'/>
-                                        <lightning:inputField fieldName="FirstName" value='{!v.firstName}'/>
-                                        <lightning:inputField fieldName="LastName" value='{!v.lastName}'/>
-                                        <lightning:inputField fieldName="Phone" value='{!v.contactPhone}'/>
-                                        <lightning:inputField fieldName="Title" value='{!v.contactTitle}'/>
-                                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name='update' label='提交更新' />
+                                        <lightning:inputField fieldName="FirstName" />
+                                        <lightning:inputField fieldName="LastName" />
+                                        <lightning:inputField fieldName="Phone" />
+                                        <lightning:inputField fieldName="Title" />
+                                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
                                     </lightning:recordEditForm>
                                     <!--
                                     <lightning:input name="accountName" label="客户名" placeholder="输入客户名" value='{!v.accountName}'/>
@@ -147,6 +139,10 @@
                     </div>
                     <!--###### MODAL BOX FOOTER Part Start ######-->
                     <footer class="slds-modal__footer">
+                        <lightning:button variant="brand"
+                                          label="保存"
+                                          title="Brand action"
+                                          onclick="{! c.handleClick }" />
                         <lightning:button variant="neutral" 
                                           label="退出"
                                           title="Cancel"

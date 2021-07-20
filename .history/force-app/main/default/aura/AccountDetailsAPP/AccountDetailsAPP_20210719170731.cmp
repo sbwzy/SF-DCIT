@@ -9,14 +9,8 @@
   1.0   07-15-2021   robert   Initial Version
 -->
 <aura:component implements="force:appHostable" controller="AccountDetailsCtrl">
-    <lightning:input type="search" label="客户名搜索" name="accountNameSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户名搜索"
-                      onclick="{! c.accountNameSearch }"/>
-    <lightning:input type="search" label="客户来源搜索" name="accountSourceSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户来源搜索"
-                      onclick="{! c.accountSourceSearch }"/>
+    <lightning:input type="search" label="Search" name="search" width=400px/>
+    <lightning:input type="search" label="Search" name="search" width=400px/>
 
     <!-- attributes -->
     <aura:attribute name="data" type="Object"/>

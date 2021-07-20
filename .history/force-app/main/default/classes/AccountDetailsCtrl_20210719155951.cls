@@ -31,9 +31,9 @@ public with sharing class AccountDetailsCtrl {
 
     //添加客户联系人
     @AuraEnabled
-    public static Contact addContact(String accountId, String firstName, String lastName, String contactPhone, String contactTitle){
+    public static Contact addContact(String accountId, String contactLastName, String contactPhone, String contactTitle){
         try {
-            Contact ctt = new Contact(AccountId=accountId, FirstName=firstName, LastName=lastName, Phone=contactPhone, Title=contactTitle);
+            Contact ctt = new Contact(AccountId=accountId, LastName=contactLastName, Phone=contactPhone, Title=contactTitle);
             insert ctt;
             return ctt;
         } catch (Exception e) {

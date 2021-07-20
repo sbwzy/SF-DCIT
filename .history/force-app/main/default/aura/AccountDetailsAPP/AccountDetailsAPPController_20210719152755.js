@@ -27,11 +27,9 @@
     
     //按钮‘添加联系人列表’的响应事件
     addContacts : function(cmp, evevt,helper){
-        console.log('1');
         var action = event.getParam('action');
         if(action.name === 'add_contacts'){
             cmp.set("v.isContactOpen", true);
-            console.log('2');
         }
     },
 
@@ -57,7 +55,7 @@
         cmp.set("v.isOpen", true);
         cmp.set('v.contactsColumns', [
             {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
+            {label: '联系人电话', fielddName: 'Phone', type: 'String'},
             {label: '职位', fieldName: 'Title', type: 'text'}
         ]);
         helper.viewContacts(row, cmp);
@@ -65,12 +63,11 @@
 
     //添加客户联系人事件
     handleClick : function(cmp, event, helper){
-        var accountId = cmp.get('v.accountId');
-        var lastName = cmp.get('v.lastName');
-        var firdtName = cmp.get('v.firstName');
+        var accountName = cmp.get('v.accountName');
+        var contactName = cmp.get('v.contactName');
         var contactPhone = cmp.get('v.contactPhone');
         var contactTitle = cmp.get('v.contactTitle');
-        if(contactLastName != null){
+        if(contactName != null){
             helper.addContact(cmp);
         }
         else{

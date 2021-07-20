@@ -57,7 +57,7 @@
         cmp.set("v.isOpen", true);
         cmp.set('v.contactsColumns', [
             {label: '联系人姓名', fieldName: 'Name', type: 'text'},
-            {label: '联系人电话', fielddName: 'Phone', type: 'Phone'},
+            {label: '联系人电话', fielddName: 'Phone', type: 'text'},
             {label: '职位', fieldName: 'Title', type: 'text'}
         ]);
         helper.viewContacts(row, cmp);

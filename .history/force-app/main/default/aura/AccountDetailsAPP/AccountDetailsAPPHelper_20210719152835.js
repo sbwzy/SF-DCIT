@@ -64,14 +64,12 @@
 
     //添加客户联系人响应事件
     addContact : function(cmp) {
-        console.log('11');
         var action = cmp.get("c.addContact");
-        action.setParam({accountId:cmp.get("v.accountId"), firstName:cmp.get("v.firstName"), lastName:cmp.get("v.lastName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
-        console.log('1');
+        action.setParam({accountName:cmp.get("v.accountName"), contactName:cmp.get("v.contactName"), contactPhone:cmp.get("v.contactPhone"), contactTitle:cmp.get("v.contactTitle")});
+
         action.setCallback(this, function (response){
             var state = response.getState();
             if (state == "SUCCESS"){
-                console.log('2');
                 console.log("From Server:" + JSON.stringify(response.getReturnValue()));
 
                 var compEvent = cmp.getEvent('LoadAllContact');

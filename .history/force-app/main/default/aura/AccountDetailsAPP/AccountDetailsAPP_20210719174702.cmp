@@ -10,13 +10,8 @@
 -->
 <aura:component implements="force:appHostable" controller="AccountDetailsCtrl">
     <lightning:input type="search" label="客户名搜索" name="accountNameSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户名搜索"
-                      onclick="{! c.accountNameSearch }"/>
+    <lightning:button 
     <lightning:input type="search" label="客户来源搜索" name="accountSourceSearch" />
-    <lightning:button variant="neutral" 
-                      label="客户来源搜索"
-                      onclick="{! c.accountSourceSearch }"/>
 
     <!-- attributes -->
     <aura:attribute name="data" type="Object"/>
