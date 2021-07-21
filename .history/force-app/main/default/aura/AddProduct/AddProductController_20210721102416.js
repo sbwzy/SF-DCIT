@@ -61,7 +61,7 @@
 
     // 保存产品
     saveProduct: function (cmp, event, helper) {
-        let productList = cmp.get('v.productList');
+        let productList = cmp.get('v.productList')
         let Id = cmp.get('v.recordId');
         let ll = productList.length;
         if (ll===0){
@@ -70,7 +70,6 @@
         }
         const opportunityLineItems = [];
         for (let i = 0; i < ll; i++) {
-            //检测是否输入产品数量
             if (productList[i].Quantity == null || productList[i].Quantity === ''){
                 cmp.set("v.isError", true);
                 return 0;

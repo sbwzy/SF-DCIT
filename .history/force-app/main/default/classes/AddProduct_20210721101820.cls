@@ -32,7 +32,7 @@ public with sharing class AddProduct {
 
     //模糊查询
     @AuraEnabled
-    public static List<CustomProduct> searchProduct(String condition) {
+    public static List<CustomProduct> searchProduct(String BookId, String condition) {
         condition = '%' + condition + '%';
         List<CustomProduct> myProducts = new List<CustomProduct>();
         for (PricebookEntry p : [
@@ -44,12 +44,11 @@ public with sharing class AddProduct {
                         Product2.Family,
                         UnitPrice
                 FROM PricebookEntry
-                WHERE Pricebook2Id = '01s5g00000HtuvPAAR'
+                WHERE Pricebook2Id = :BookId
                 AND (Product2.Name LIKE :condition OR Product2.ProductCode LIKE :condition)
         ]) {
             myProducts.add(new CustomProduct(p.Product2.Name, p.Product2.ProductCode, p.Product2.Description, p.Product2.Family, p.Product2.Id, (Integer) p.UnitPrice));
         }
-        System.debug(myProducts);
         return myProducts;
     }
 
@@ -83,7 +82,6 @@ public with sharing class AddProduct {
     //插入业务机会产品
     @AuraEnabled
     public static void insertProduct(List<OpportunityLineItem> opportunityLineItems) {
-        System.debug(opportunityLineItems);
         insert opportunityLineItems;
     }
 

@@ -93,11 +93,10 @@
         $A.enqueueAction(action);
     },
 
-    // 插入产品
+    // 新建产品
     insertProduct: function (cmp) {
         var action = cmp.get('c.insertProduct');
         action.setParams({opportunityLineItems: cmp.get('v.opportunityLineItems')});
-        console.log(cmp.get('v.opportunityLineItems'));
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {

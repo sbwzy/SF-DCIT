@@ -19,7 +19,7 @@
     <aura:attribute name="onSelect" type="List"/>
     <aura:attribute name="opportunityLineItems" type="List"/>
     <aura:attribute name="Pricebook2List" type="List"/>
-    <aura:attribute name="defaultId" type="String" default="01s5g00000HtuvPAAR"/>
+    <aura:attribute name="defaultId" type="String" default="01s5g00000KLitHAAT"/>
 
     <!-- 初始化 -->
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
@@ -41,7 +41,7 @@
                 </lightning:layoutItem>
                 <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
                     <div class="custom-box">
-                        <lightning:button label="Search" onclick="{! c.searchPro}"/>
+                        <lightning:button label="Search" onclick="{! c.search1}"/>
                     </div>
                 </lightning:layoutItem>
             </lightning:layout>
@@ -59,7 +59,6 @@
         </p>
     </lightning:card>
 
-    <!-- 保存产品 -->
     <lightning:card title="Selected Product" iconName="standard:product_transfer">
         <aura:set attribute="actions">
             <lightning:button label="Save" onclick="{! c.saveProduct}"/>
