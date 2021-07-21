@@ -23,8 +23,8 @@
             }
         ]);
 
-        // console.log('子组件: ' + cmp.get('v.recordId'));
-        // helper.onLoad(cmp);
+        console.log('子组件: ' + cmp.get('v.recordId'));
+        helper.onLoad(cmp);
         cmp.set('v.productList', []);
         helper.loadPrice(cmp);
     },
@@ -89,6 +89,7 @@
     closeModel: function (component, event, helper) {
         component.set("v.isOpen", false);
         component.set("v.isError", false);
+        // component.set("v.isBook", false);
         component.set('v.isBookNULL', false);
     },
 

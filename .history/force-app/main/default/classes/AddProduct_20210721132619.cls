@@ -9,6 +9,26 @@
  * 1.0   07-20-2021   robert   Initial Version
 **/
 public with sharing class AddProduct {
+        
+    // @AuraEnabled
+    // public static List<CustomProduct> getAllPricebookEntry(String defaultId) {
+    //     //  存储价格手册
+    //     List<CustomProduct> myProducts = new List<CustomProduct>();
+    //     for (PricebookEntry p : [
+    //             SELECT Id, Name,
+    //                     Product2.Id,
+    //                     Product2.Name,
+    //                     Product2.ProductCode,
+    //                     Product2.Description,
+    //                     Product2.Family,
+    //                     UnitPrice
+    //             FROM PricebookEntry
+    //             WHERE Pricebook2Id = :defaultId
+    //     ]) {
+    //         myProducts.add(new CustomProduct(p.Product2.Name, p.Product2.ProductCode, p.Product2.Description, p.Product2.Family, p.Product2.Id, (Integer) p.UnitPrice));
+    //     }
+    //     return myProducts;
+    // }
 
     //模糊查询
     @AuraEnabled
@@ -53,7 +73,7 @@ public with sharing class AddProduct {
         return myProducts;
     }
 
-    //添加业务机会产品
+    //插入业务机会产品
     @AuraEnabled
     public static void insertProduct(List<OpportunityLineItem> opportunityLineItems) {
         System.debug(opportunityLineItems);

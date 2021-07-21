@@ -18,6 +18,7 @@
     <aura:attribute name="productList" type="List"/>
     <aura:attribute name="onSelect" type="List"/>
     <aura:attribute name="opportunityLineItems" type="List"/>
+    <aura:attribute name="Pricebook2List" type="List"/>
     <aura:attribute name="defaultId" type="String" default="01s5g00000HtuvPAAR"/>
 
     <!-- 初始化 -->

@@ -1,12 +1,14 @@
  ({
-    // 初始化页面并加载价格手册
-    loadPrice: function (cmp) {
-        var action = cmp.get("c.loadPriceBook");
+    // 初始化
+    onLoad: function (cmp) {
+        var action = cmp.get("c.getAllPricebookEntry");
+        action.setParams({defaultId: cmp.get('v.defaultId')});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();
                 cmp.set('v.data', result);
+                console.log(result);
             }
             else if (state === "INCOMPLETE") {
                 // 代码桩
@@ -25,7 +27,34 @@
         $A.enqueueAction(action);
     },
 
-    // 模糊搜索
+    // 加载产品
+    onLoadPricebook2: function (cmp) {
+        var action = cmp.get("c.getPricebook2s");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var result = response.getReturnValue();
+                cmp.set('v.Pricebook2List', result);
+                console.log(result);
+            }
+            else if (state === "INCOMPLETE") {
+                // 代码桩
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.log("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.log("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
+    // 搜索产品
     searchProduct: function (cmp) {
         var action = cmp.get('c.searchProduct');
         action.setParams({condition: cmp.get('v.condition')});
@@ -61,7 +90,7 @@
         $A.enqueueAction(action);
     },
 
-    // 添加产品
+    // 插入产品
     insertProduct: function (cmp) {
         var action = cmp.get('c.insertProduct');
         action.setParams({opportunityLineItems: cmp.get('v.opportunityLineItems')});
@@ -71,8 +100,7 @@
             if (state === "SUCCESS") {
                 cmp.set("v.isOpen", true);
                 cmp.set('v.productList', []);
-                //重载页面
-                this.loadPrice(cmp);
+                this.onLoad(cmp);
             }
             else if (state === "INCOMPLETE") {
                 // 代码桩
@@ -89,5 +117,31 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+
+    // 加载价格手册
+    loadPrice: function (cmp) {
+        var action = cmp.get("c.loadPriceBook");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var result = response.getReturnValue();
+                cmp.set('v.data', result);
+            }
+            else if (state === "INCOMPLETE") {
+                // 代码桩
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.log("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.log("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+    },
 });

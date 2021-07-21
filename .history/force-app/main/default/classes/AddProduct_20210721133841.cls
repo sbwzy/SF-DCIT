@@ -53,7 +53,7 @@ public with sharing class AddProduct {
         return myProducts;
     }
 
-    //添加业务机会产品
+    //插入业务机会产品
     @AuraEnabled
     public static void insertProduct(List<OpportunityLineItem> opportunityLineItems) {
         System.debug(opportunityLineItems);

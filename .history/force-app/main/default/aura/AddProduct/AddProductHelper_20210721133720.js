@@ -25,7 +25,7 @@
         $A.enqueueAction(action);
     },
 
-    // 模糊搜索
+    // 搜索产品
     searchProduct: function (cmp) {
         var action = cmp.get('c.searchProduct');
         action.setParams({condition: cmp.get('v.condition')});
@@ -61,7 +61,7 @@
         $A.enqueueAction(action);
     },
 
-    // 添加产品
+    // 插入产品
     insertProduct: function (cmp) {
         var action = cmp.get('c.insertProduct');
         action.setParams({opportunityLineItems: cmp.get('v.opportunityLineItems')});

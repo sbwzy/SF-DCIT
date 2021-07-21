@@ -23,8 +23,8 @@
             }
         ]);
 
-        // console.log('子组件: ' + cmp.get('v.recordId'));
-        // helper.onLoad(cmp);
+        console.log('子组件: ' + cmp.get('v.recordId'));
+        helper.onLoad(cmp);
         cmp.set('v.productList', []);
         helper.loadPrice(cmp);
     },

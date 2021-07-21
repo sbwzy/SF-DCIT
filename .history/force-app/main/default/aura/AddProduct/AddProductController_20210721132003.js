@@ -23,8 +23,10 @@
             }
         ]);
 
-        // console.log('子组件: ' + cmp.get('v.recordId'));
-        // helper.onLoad(cmp);
+        console.log('子组件: ' + cmp.get('v.recordId'));
+        helper.onLoad(cmp);
+        // helper.onLoadPricebook2(cmp);
+
         cmp.set('v.productList', []);
         helper.loadPrice(cmp);
     },
@@ -89,8 +91,13 @@
     closeModel: function (component, event, helper) {
         component.set("v.isOpen", false);
         component.set("v.isError", false);
+        // component.set("v.isBook", false);
         component.set('v.isBookNULL', false);
     },
+
+    // searchBook: function (cmp, event, helper) {
+    //     cmp.set("v.isBook", true);
+    // },
 
     // 产出产品
     delProduct: function (cmp, event, helper) {
@@ -102,5 +109,11 @@
         cmp.set('v.data', myArray);
         productList.splice(index, 1);
         cmp.set('v.productList', productList);
-    }
+    },
+
+    // 切换价格手册
+    // changeBook: function (cmp, event, helper){
+    //     cmp.set('v.productList', []);
+    //     helper.loadPrice(cmp);
+    // },
 })
