@@ -1,0 +1,244 @@
+<!--
+  @description       : 
+  @author            : robert
+  @group             : dcit-hf
+  @last modified on  : 07-21-2021
+  @last modified by  : robert
+  Modifications Log 
+  Ver   Date         Author   Modification
+  1.0   07-21-2021   robert   Initial Version
+-->
+ <aura:component controller="AddProduct" access="global" description="AddProduct" implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction">
+    
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="columns2" type="List"/>
+    <aura:attribute name="condition" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="productList" type="List"/>
+    <aura:attribute name="onSelect" type="List"/>
+    <aura:attribute name="opportunityLineItems" type="List"/>
+    <aura:attribute name="Pricebook2List" type="List"/>
+    <aura:attribute name="BookId" type="String"/>
+    <aura:attribute name="defaultId" type="String" default="01s5g00000KLitHAAT"/>
+
+    <!-- handlers -->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+
+    <lightning:card footer="默认展示100条" title="Add Product" iconName="standard:product_item">
+        <aura:set attribute="actions">
+            <lightning:layout>
+                <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                    <div class="custom-box">
+                        <lightning:button label="选择价格手册" onclick="{! c.searchBook}"/>
+                    </div>
+                </lightning:layoutItem>
+
+                <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                    <div class="custom-box">
+                        <lightning:input name="input1" value="{! v.condition }" variant="label-hidden" placeholder="输入产品代码..."/>
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                    <div class="custom-box">
+                        <lightning:button label="搜索" onclick="{! c.search1}"/>
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:set>
+
+        <!--    价格手册产品列表    -->
+        <p class="slds-p-horizontal_small">
+            <lightning:datatable aura:id="datatable"
+                                 keyField="id"
+                                 onrowselection="{! c.getSelect}"
+                                 selectedRows="{! v.onSelect}"
+                                 data="{! v.data }"
+                                 columns="{! v.columns }"
+            />
+        </p>
+    </lightning:card>
+
+    <lightning:card footer="Selected Product" title="Selected Product" iconName="standard:product_transfer">
+        <aura:set attribute="actions">
+            <lightning:button label="Save" onclick="{! c.saveProduct}"/>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+        <table>
+            <tr>
+                <lightning:layout horizontalAlign="spread">
+                    <lightning:layoutItem size="3" padding="horizontal-medium">
+                        <th style="margin: 0 auto; font-size: larger; line-height: 40px;">
+                            Product Name
+                        </th>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="3" padding="horizontal-medium">
+                        <th style="margin: 0 auto; font-size: larger; line-height: 40px;">
+                            Quantity
+                        </th>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="3" padding="horizontal-medium">
+                        <th style="margin: 0 auto; font-size: larger; line-height: 40px;">
+                            Sales Price
+                        </th>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="3" padding="horizontal-medium">
+                        <th style="margin: 0 auto; font-size: larger; line-height: 40px;">
+                        </th>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </tr>
+            <aura:iteration items="{!v.productList}" var="Product" indexVar="index">
+                <tr>
+                    <lightning:layout horizontalAlign="spread">
+                        <lightning:layoutItem size="3" padding="horizontal-medium">
+                            <td>
+                                <lightning:button class="slds-dropdown_large" name="input2" variant="base" label="{!Product.ProductName}"/>
+                            </td>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="3" padding="horizontal-medium">
+                            <td>
+                                <lightning:input name="input2" variant="label-hidden" required="true" value="{!Product.Quantity}"/>
+                            </td>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="3" padding="horizontal-medium">
+                            <td>
+                                <aura:text value="{!Product.SalesPrice}"/>
+                            </td>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="3" padding="horizontal-medium">
+                            <td>
+                                <lightning:button aura:id="" name="{!index}" iconName="utility:delete" variant="base" accesskey="" onclick="{!c.delProduct}"/>
+                            </td>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </tr>
+            </aura:iteration>
+        </table>
+        </p>
+    </lightning:card>
+
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                 aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          size="large"/>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">添加产品成功</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                     style="text-align: center">
+                    添加产品成功!
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="Save"
+                                      title="Save"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:attribute name="isError" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isError}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                 aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          size="large"/>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">保存失败</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                     style="text-align: center; font-size: 28px;">
+                    请检查必填字段!
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="确定"
+                                      title="确定"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:attribute name="isBook" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isBook}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                 aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          size="large"/>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">选择价格手册</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:select aura:id="field" value="{!v.BookId}" label="Select the best ice cream flavor"
+                                      onchange="{! c.changeBook}" name="flavor" required="true">
+                        <aura:iteration items="{!v.Pricebook2List}" var="Pricebook2" indexVar="index">
+                            <option value="{!Pricebook2.Id}">{!Pricebook2.Name}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="确定"
+                                      title="确定"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:attribute name="isBookNULL" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isBookNULL}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                 aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          size="large"/>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">查询完成</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                     style="text-align: center; font-size: 28px;">
+                    没有该产品!
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="确定"
+                                      title="确定"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>
