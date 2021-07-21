@@ -1,4 +1,4 @@
-<aura:application extends="force:slds">
+<aura:application for>
     AddProduct
     <c:AddProductComponent />
 </aura:application>	

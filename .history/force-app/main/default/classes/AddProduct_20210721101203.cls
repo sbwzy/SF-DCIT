@@ -33,6 +33,7 @@ public with sharing class AddProduct {
     //模糊查询
     @AuraEnabled
     public static List<CustomProduct> searchProduct(String BookId, String condition) {
+        //  存储封装的自定义介个手册
         condition = '%' + condition + '%';
         List<CustomProduct> myProducts = new List<CustomProduct>();
         for (PricebookEntry p : [

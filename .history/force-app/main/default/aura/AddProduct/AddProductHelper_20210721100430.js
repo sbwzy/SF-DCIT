@@ -122,7 +122,7 @@
         $A.enqueueAction(action);
     },
 
-    // 加载价格手册
+    // 选择产品
     loadPrice: function (cmp) {
         var action = cmp.get("c.loadPriceBook");
         action.setCallback(this, function(response) {

@@ -19,6 +19,7 @@
     <aura:attribute name="onSelect" type="List"/>
     <aura:attribute name="opportunityLineItems" type="List"/>
     <aura:attribute name="Pricebook2List" type="List"/>
+    <aura:attribute name="BookId" type="String"/>
     <aura:attribute name="defaultId" type="String" default="01s5g00000KLitHAAT"/>
 
     <!-- 初始化 -->
@@ -177,6 +178,36 @@
     </aura:if>
 
     <aura:attribute name="isBook" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isBook}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          size="large"/>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Please Choose PriceBook!</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:select aura:id="field" value="{!v.BookId}" label="Select the best ice cream flavor"
+                                      onchange="{! c.changeBook}" name="flavor" required="true">
+                        <aura:iteration items="{!v.Pricebook2List}" var="Pricebook2" indexVar="index">
+                            <option value="{!Pricebook2.Id}">{!Pricebook2.Name}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="确定"
+                                      title="确定"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
 
     <aura:attribute name="isBookNULL" type="boolean" default="false"/>
     <aura:if isTrue="{!v.isBookNULL}">

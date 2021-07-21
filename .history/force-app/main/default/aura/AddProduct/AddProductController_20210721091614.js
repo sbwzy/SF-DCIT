@@ -26,9 +26,6 @@
         console.log('子组件: ' + cmp.get('v.recordId'));
         helper.onLoad(cmp);
         helper.onLoadPricebook2(cmp);
-
-        cmp.set('v.productList', []);
-        helper.loadPrice(cmp);
     },
 
     // 搜索产品
@@ -111,8 +108,8 @@
     },
 
     // 切换价格手册
-    // changeBook: function (cmp, event, helper){
-    //     cmp.set('v.productList', []);
-    //     helper.loadPrice(cmp);
-    // },
+    changeBook: function (cmp, event, helper){
+        cmp.set('v.productList', []);
+        helper.selectBook(cmp);
+    },
 })

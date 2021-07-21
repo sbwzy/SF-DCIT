@@ -9,10 +9,46 @@
  * 1.0   07-20-2021   robert   Initial Version
 **/
 public with sharing class AddProduct {
-        
+    
+    public class CustomProduct {
+        @AuraEnabled
+        public String ProductName { get; set; }
+        @AuraEnabled
+        public String ProductCode { get; set; }
+        @AuraEnabled
+        public String Description { get; set; }
+        @AuraEnabled
+        public String Family { get; set; }
+        @AuraEnabled
+        public String PID { get; set; }
+        @AuraEnabled
+        public Double Quantity { get; set; }
+        @AuraEnabled
+        public Integer SalesPrice { get; set; }
+
+        /**
+         * @description: 内部类构造方法
+         */
+        public CustomProduct(String ProductName, String ProductCode, String Description, String Family, String PID, Integer SalesPrice) {
+            try {
+                this.ProductName = ProductName;
+                this.ProductCode = ProductCode;
+                this.Description = Description;
+                this.Family = Family;
+                this.PID = PID;
+                this.Quantity = null;
+                this.SalesPrice = SalesPrice;
+            } catch (Exception e) {
+                throw new AuraHandledException(e.getMessage());
+            }
+        }
+    }
+
+
+    
     @AuraEnabled
     public static List<CustomProduct> getAllPricebookEntry(String defaultId) {
-        //  存储封装价格手册
+        //  存储封装的自定义价格手册
         List<CustomProduct> myProducts = new List<CustomProduct>();
         for (PricebookEntry p : [
                 SELECT Id, Name,
@@ -30,9 +66,10 @@ public with sharing class AddProduct {
         return myProducts;
     }
 
-    //模糊查询
+    
     @AuraEnabled
     public static List<CustomProduct> searchProduct(String BookId, String condition) {
+        //  存储封装的自定义介个手册
         condition = '%' + condition + '%';
         List<CustomProduct> myProducts = new List<CustomProduct>();
         for (PricebookEntry p : [
@@ -52,17 +89,24 @@ public with sharing class AddProduct {
         return myProducts;
     }
 
-    //获取默认的价格手册
+    /**
+         * @author Frank
+         * @date 2021/07/07 14:24
+         * @description 获取默认价格手册
+         * @Parameters 无
+         * @return 价格手册
+         */
     @AuraEnabled
     public static List<Pricebook2> getPricebook2s() {
         List<Pricebook2> pricebook2s = [SELECT Id, Name FROM Pricebook2];
         return pricebook2s;
     }
 
-    //加载价格手册
+    
     @AuraEnabled
     public static List<CustomProduct> loadPriceBook() {
         List<CustomProduct> myProducts = new List<CustomProduct>();
+        System.debug(BookId);
         for (PricebookEntry p : [
                 SELECT Id, Name,
                         Product2.Id,
@@ -79,41 +123,15 @@ public with sharing class AddProduct {
         return myProducts;
     }
 
-    //插入业务机会产品
+    /**
+     * @author Frank
+     * @date 2021/07/07 14:24
+     * @description 插入产品
+     * @Parameters 业务机会产品
+     * @return 无
+     */
     @AuraEnabled
     public static void insertProduct(List<OpportunityLineItem> opportunityLineItems) {
         insert opportunityLineItems;
-    }
-
-    //创建一个内部类
-    public class CustomProduct {
-        @AuraEnabled
-        public String ProductName { get; set; }
-        @AuraEnabled
-        public String ProductCode { get; set; }
-        @AuraEnabled
-        public String Description { get; set; }
-        @AuraEnabled
-        public String Family { get; set; }
-        @AuraEnabled
-        public String PID { get; set; }
-        @AuraEnabled
-        public Double Quantity { get; set; }
-        @AuraEnabled
-        public Integer SalesPrice { get; set; }
-
-        public CustomProduct(String ProductName, String ProductCode, String Description, String Family, String PID, Integer SalesPrice) {
-            try {
-                this.ProductName = ProductName;
-                this.ProductCode = ProductCode;
-                this.Description = Description;
-                this.Family = Family;
-                this.PID = PID;
-                this.Quantity = null;
-                this.SalesPrice = SalesPrice;
-            } catch (Exception e) {
-                throw new AuraHandledException(e.getMessage());
-            }
-        }
     }
 }

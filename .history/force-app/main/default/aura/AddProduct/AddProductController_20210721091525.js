@@ -1,5 +1,5 @@
 ({
-    // 初始化加载
+    // 加载
     init: function (cmp, event, helper) {
         cmp.set('v.columns', [
             {label: 'Product Name', fieldName: 'ProductName', type: 'text'},
@@ -8,7 +8,7 @@
             {label: 'Family', fieldName: 'Family', type: 'text'},
         ]);
 
-        cmp.set('v.columnsChoose', [
+        cmp.set('v.columns2', [
             {label: 'Product Name', fieldName: 'ProductName', type: 'text', editable: true},
             {label: 'Quantity', fieldName: 'Quantity', type: 'text', editable: true},
             {label: 'SalesPrice', fieldName: 'SalesPrice', type: 'text',  editable: true},
@@ -26,9 +26,6 @@
         console.log('子组件: ' + cmp.get('v.recordId'));
         helper.onLoad(cmp);
         helper.onLoadPricebook2(cmp);
-
-        cmp.set('v.productList', []);
-        helper.loadPrice(cmp);
     },
 
     // 搜索产品
@@ -111,8 +108,8 @@
     },
 
     // 切换价格手册
-    // changeBook: function (cmp, event, helper){
-    //     cmp.set('v.productList', []);
-    //     helper.loadPrice(cmp);
-    // },
+    changeBook: function (cmp, event, helper){
+        cmp.set('v.productList', []);
+        helper.selectBook(cmp);
+    },
 })

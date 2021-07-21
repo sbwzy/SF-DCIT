@@ -111,8 +111,8 @@
     },
 
     // 切换价格手册
-    // changeBook: function (cmp, event, helper){
-    //     cmp.set('v.productList', []);
-    //     helper.loadPrice(cmp);
-    // },
+    changeBook: function (cmp, event, helper){
+        cmp.set('v.productList', []);
+        helper.loadPrice(cmp);
+    },
 })
