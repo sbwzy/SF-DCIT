@@ -51,6 +51,7 @@ public with sharing class AccountDetailsCtrl {
     public static List<Contact> getAllContacts(String accountId){
         try {
             return [SELECT Id,Name,Phone,Title FROM Contact WHERE AccountId =: accountId];
+            System.debug([SELECT Id,Name,Phone,Title FROM Contact WHERE AccountId =: accountId]);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
