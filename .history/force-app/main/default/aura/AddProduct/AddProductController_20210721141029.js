@@ -58,13 +58,13 @@
     saveProduct: function (cmp, event, helper) {
         let productList = cmp.get('v.productList');
         let Id = cmp.get('v.recordId');
-        let pl = productList.length;
-        if (pl===0){
+        let ll = productList.length;
+        if (ll===0){
             cmp.set('v.noSuchProduct', true);
             return 0;
         }
         const opportunityLineItems = [];
-        for (let i = 0; i < pl; i++) {
+        for (let i = 0; i < ll; i++) {
             //检测是否输入产品数量
             if (productList[i].Quantity == null || productList[i].Quantity === ''){
                 cmp.set("v.isError", true);

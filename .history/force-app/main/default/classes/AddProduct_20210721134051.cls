@@ -60,7 +60,7 @@ public with sharing class AddProduct {
         insert opportunityLineItems;
     }
 
-    //创建一个关于业务机会产品的内部类
+    //创建一个内部类
     public class CustomProduct {
         
         @AuraEnabled

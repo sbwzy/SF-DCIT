@@ -97,7 +97,6 @@
                         </lightning:layoutItem>
                         <lightning:layoutItem size="4" padding="horizontal-medium">
                             <td>
-                                <!-- 设置为required必须填写的 -->
                                 <lightning:input name="inputProduct" variant="label-hidden" required="true" value="{!Product.Quantity}"/>
                             </td>
                         </lightning:layoutItem>

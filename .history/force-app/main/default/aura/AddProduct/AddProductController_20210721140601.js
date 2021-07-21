@@ -43,14 +43,14 @@
         let myArray = [];
         myArray = cmp.get('v.data');
 
-        let q;
+        let index;
         for (let i = 0; i < myArray.length; i++) {
             if (myArray[i].PID === selectedRows[0].PID) {
-                q = i;
+                index = i;
             }
         }
         // 从价格手册产品列表删除选择的产品
-        myArray.splice(q, 1);
+        myArray.splice(index, 1);
         cmp.set('v.data', myArray);
     },
 
@@ -58,13 +58,13 @@
     saveProduct: function (cmp, event, helper) {
         let productList = cmp.get('v.productList');
         let Id = cmp.get('v.recordId');
-        let pl = productList.length;
-        if (pl===0){
+        let ll = productList.length;
+        if (ll===0){
             cmp.set('v.noSuchProduct', true);
             return 0;
         }
         const opportunityLineItems = [];
-        for (let i = 0; i < pl; i++) {
+        for (let i = 0; i < ll; i++) {
             //检测是否输入产品数量
             if (productList[i].Quantity == null || productList[i].Quantity === ''){
                 cmp.set("v.isError", true);
@@ -91,14 +91,14 @@
 
     // 删除已选择产品
     delProduct: function (cmp, event, helper) {
-        const q = event.getSource().get('v.name');
-        console.log(q);
+        const index = event.getSource().get('v.name');
+        console.log(index);
         const productList = cmp.get('v.productList');
         const myArray = cmp.get('v.data');
         //将删除的产品添加回产品列表
-        myArray.push(productList[q]);
+        myArray.push(productList[index]);
         cmp.set('v.data', myArray);
-        productList.splice(q, 1);
+        productList.splice(index, 1);
         cmp.set('v.productList', productList);
     }
 })

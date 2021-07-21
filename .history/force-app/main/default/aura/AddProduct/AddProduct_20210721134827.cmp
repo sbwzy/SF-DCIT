@@ -52,7 +52,7 @@
         </p>
     </lightning:card>
 
-    <!-- 保存产品按钮 -->
+    <!-- 保存产品 -->
     <lightning:card title="Selected Product" iconName="standard:product_transfer">
         <aura:set attribute="actions">
             <lightning:button label="Save" onclick="{! c.saveProduct}"/>
@@ -60,7 +60,6 @@
         <p class="slds-p-horizontal_small">
         <table>
             <tr>
-                <!-- 已选择产品的表头 -->
                 <lightning:layout horizontalAlign="spread">
                     <lightning:layoutItem size="5" padding="horizontal-medium">
                         <th style="margin: 0 auto; font-size: larger; line-height: 40px;">
@@ -86,7 +85,6 @@
                     </lightning:layoutItem>
                 </lightning:layout>
             </tr>
-            <!-- 已选择的产品 -->
             <aura:iteration items="{!v.productList}" var="Product" indexVar="index">
                 <tr>
                     <lightning:layout horizontalAlign="spread">
@@ -97,7 +95,6 @@
                         </lightning:layoutItem>
                         <lightning:layoutItem size="4" padding="horizontal-medium">
                             <td>
-                                <!-- 设置为required必须填写的 -->
                                 <lightning:input name="inputProduct" variant="label-hidden" required="true" value="{!Product.Quantity}"/>
                             </td>
                         </lightning:layoutItem>
