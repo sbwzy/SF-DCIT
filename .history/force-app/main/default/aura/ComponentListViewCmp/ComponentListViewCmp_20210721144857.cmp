@@ -9,7 +9,7 @@
   1.0   07-01-2021   robert   Initial Version
 -->
 <aura:component controller="AccountCtrl">
-  <!-- 监听选中的客户,接收该客户的联系人信息 -->
+  <!-- 监听选中的客户,接收该客户的 -->
   <aura:handler event="c:returnContactList" action="{!c.doInit}"/>
 
   <!--  联系人列表  -->
