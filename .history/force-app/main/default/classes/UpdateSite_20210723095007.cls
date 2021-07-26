@@ -16,9 +16,11 @@ global class UpdateSite implements Database.Batchable<SObject>, Database.Statefu
     
     global void execute (Database.BatchableContext BC, List<Account> scope){
         for (Account acc : scope){
+            if(''.equals(acc.Site)){
                 acc.Site = 'www.salesforce.com';
+            }
         }
-        update scope;
+
     }
 
     global void finish (Database.BatchableContext BC){
