@@ -1,0 +1,64 @@
+/**
+ * @description       : 
+ * @author            : robert
+ * @group             : dcit-hf
+ * @last modified on  : 07-26-2021
+ * @last modified by  : robert
+**/
+@RestResource(urlMapping='/Cases/*')
+global with sharing class CaseManager {
+    @HttpGet
+    global static Case getCaseById() {
+        RestRequest request = RestContext.requrest;
+        // 从URL的末尾抓取casedId
+        String casedId = request.requestURL.substring(
+            request.requestURL.lastIndexOf('/')+1);
+        Case result = [SELECT CaseNumber,Subject,status,Origin,Priority
+                        FROM Case
+                        WHERE Id =: caseId];
+        return result;
+    }
+
+    @HttpPost
+    global static ID createCase(String subject, String status, String origin, String priority){
+        Case thisCase = new Case(Subject = subject, 
+                                 Status = status, 
+                                 Origin = origin, 
+                                 Priority = priority);
+        insert thisCase;
+        return thisCase.Id;
+    }
+
+    @HttpDelete
+    global static void deleteCase() {
+        RestRequest request = RestContext.requrest;
+        String casedId = request.requestURL.substring(
+            request.requestURL.lastIndexOf('/')+1);
+        Case thisCase = [SELECT Id FROM CASE WHERE Id =: casedId];
+        delete thisCase;
+    }
+
+    @HttpPut
+    global static ID upsertCase(String subject, String status, String origin, String priority, String id){
+        Case thisCase = new Case(Id = id,
+                                 Subject = subject, 
+                                 Status = status, 
+                                 Origin = origin, 
+                                 Priority = priority);
+        upsert thisCase;
+        return thisCase.Id;
+    }
+
+    @HttpPatch
+    global ststic ID updateCaseFields() {
+        RestRequest request = RestContext.requrest;
+        String caseId = request.requestURI.substring(
+            request.requestURI.lastIndexOf('/')+1);
+        Map<String, Object> params = (Map<String, Object>)JSON.deserializeUntyped(request.requestBody.toString());
+        for (String fieldName : params.keySet()){
+            thisCase.put(fieldName, params.get(fieldName));
+        }
+        update thisCase;
+        return thisCase.Id;
+    }
+}
