@@ -6,7 +6,7 @@
  * @last modified by  : robert
 **/
 @RestResource(urlMapping='/Product2s/*')
-global with sharing class Product2Manager implements Iterable<Product2>{
+global with sharing class Product2Manager {
     @HttpGet
     global static Product2 getProduct2ById() {
         RestRequest request = RestContext.request;
@@ -32,8 +32,8 @@ global with sharing class Product2Manager implements Iterable<Product2>{
         while (iterator.hasNext()) {
             Product2 cur = iterator.next();
             for (Product2 itemOld : oldList){
-                if (cur.ProductCode === itemOld.ProductCode){
-                    mesReturn.add(new MessageReturn(cur.ProductCode, '001', '数据重复'));
+                if (cur === itemOld.ProductCode){
+                    mesReturn.add(new MessageReturn(itemNew.ProductCode, '001', '数据重复'));
                     iterator.remove();
                 }
             }

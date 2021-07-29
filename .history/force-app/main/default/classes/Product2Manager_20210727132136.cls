@@ -6,7 +6,7 @@
  * @last modified by  : robert
 **/
 @RestResource(urlMapping='/Product2s/*')
-global with sharing class Product2Manager implements Iterable<Product2>{
+global with sharing class Product2Manager implements Iterable<Product2>.iterator(){
     @HttpGet
     global static Product2 getProduct2ById() {
         RestRequest request = RestContext.request;
