@@ -2,7 +2,7 @@
   @description       : 
   @author            : robert
   @group             : dcit-hf
-  @last modified on  : 07-13-2021
+  @last modified on  : 08-02-2021
   @last modified by  : robert
   Modifications Log 
   Ver   Date         Author   Modification
@@ -63,9 +63,9 @@
                     <apex:commandButton action="{!first}" title="First" value="首页" reRender="showpanel,buttons"/>
                     <apex:commandButton action="{!previous}" title="Previous" value="上一页" reRender="showpanel,buttons"/>
                     <apex:commandButton action="{!next}" title="Next" value="下一页" reRender="showpanel,buttons"/>
-                    <apex:commandButton action="{!end}" title="End" value="尾页" reRender="showpanel,buttons"/>                   
+                    <apex:commandButton action="{!end}" title="End" value="尾页" reRender="showpanel,buttons"/>
                     <div style="width: 200px;height: 10px;" >
-                        <apex:outputLabel value="第{!pageNumber}/{!totalPages}页 共计{!totalSize}条"></apex:outputLabel>               
+                        <apex:outputLabel value="第{!pageNumber}/{!totalPages}页 共计{!totalSize}条"></apex:outputLabel>
                     </div>
                 </apex:outputPanel>             
             </div>
