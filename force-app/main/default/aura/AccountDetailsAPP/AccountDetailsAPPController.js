@@ -37,7 +37,7 @@
     },
     
     //按钮‘添加联系人列表’的响应事件
-    addContacts : function(cmp, evevt,helper){
+    addContacts : function(cmp, event,helper){
         console.log('1');
         var action = event.getParam('action');
         if(action.name === 'add_contacts'){
